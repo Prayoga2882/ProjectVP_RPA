@@ -1,3 +1,5 @@
+import json
+
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
@@ -15,10 +17,14 @@ def get_elements():
     elems = driver.execute_script(
         "return document.getElementsByClassName('swiper-wrapper')")
     time.sleep(5)
-    for elem in elems:
-        print(elem.text)
+    results = {}
+    for i, elem in enumerate(elems):
+        results[f'paket_{i + 1}'] = elem.text
 
     driver.quit()
+    # Menyimpan hasil ke dalam file JSON
+    with open('report/result_scrapping_by_element.json', 'w') as json_file:
+        json.dump(results, json_file)
 
 
 if __name__ == '__main__':
