@@ -13,8 +13,8 @@ def get_elements():
                         '/html/body/ngb-modal-window/div/div/app-notification-confirmation/div/div[3]/div/a[1]').click()
 
     elems = driver.execute_script(
-        "return document.getElementsByClassName('swiper-slide pb-2 swiper-slide-visible swiper-slide-active')")
-    time.sleep(3)
+        "return document.getElementsByClassName('swiper-wrapper')")
+    time.sleep(5)
     for elem in elems:
         print(elem.text)
 
