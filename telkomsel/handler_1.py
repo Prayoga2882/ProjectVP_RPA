@@ -4,17 +4,17 @@ import requests
 from lxml import html
 
 
-def name():
-    url = 'https://www.telkomsel.com/promo'
-    text, soup = html_read(url)
-    my_paragraph = soup.find('div', {'class': 'promo-name'})
+def name_1():
+    url = 'https://www.telkomsel.com/promo/DANA-cashback'
+    text, soup = html_read_1(url)
+    my_paragraph = soup.find('h1')
     if my_paragraph:
         text = my_paragraph.get_text()
 
     return text
 
 
-def term_and_condition():
+def term_and_condition_1():
     url = 'https://www.telkomsel.com/promo/DANA-cashback'
     response = requests.get(url)
 
@@ -28,27 +28,35 @@ def term_and_condition():
     return li_text
 
 
-def periode():
+def periode_1():
     url = 'https://www.telkomsel.com/promo/DANA-cashback'
-    text, soup = html_read(url)
+    text, soup = html_read_1(url)
 
     my_paragraph = soup.find('div', {'class': 'left-promo-content'})
     if my_paragraph:
         text = my_paragraph.get_text()
     text = text.replace('\n', '')
     text = text.replace(' ', '')
-    string_setelah_1 = text.replace("\u2013", "-")
+    # Mencari posisi angka pertama setelah 'PERIODEPROMO'
+    posisi_angka_pertama = text.find('0')
 
-    string_setelah_2 = string_setelah_1[:12] + " " + string_setelah_1[12:17] + " " + string_setelah_1[
-                                                                                     17:21] + " " + string_setelah_1[
-                                                                                                    21:]
+    # Menyisipkan spasi antara 'PERIODE' dan 'PROMO'
+    text = text[:posisi_angka_pertama] + ' ' + text[posisi_angka_pertama:]
 
-    string_setelah_3 = string_setelah_2[:28] + ":" + string_setelah_2[28:30] + string_setelah_2[30:]
+    # Menyisipkan spasi antara tanggal dan bulan pada periode promo
+    posisi_tanggal_akhir = text.find(' ', posisi_angka_pertama)
+    posisi_bulan_awal = text.find('-', posisi_tanggal_akhir)
+    posisi_bulan_akhir = text.find(' ', posisi_bulan_awal)
+    text = text[:posisi_bulan_awal + 1] + ' ' + text[posisi_bulan_awal + 1:posisi_bulan_akhir] + ' ' + text[
+                                                                                                       posisi_bulan_akhir:]
 
-    return string_setelah_3
+    # Mengganti tanda '–' dengan '-'
+    text = text.replace('–', '-')
+
+    return text
 
 
-def html_read(url):
+def html_read_1(url):
     html_parsing = urlopen(url).read()
     soup = BeautifulSoup(html_parsing, features="html.parser")
 
