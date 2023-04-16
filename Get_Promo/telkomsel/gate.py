@@ -1,9 +1,9 @@
 import json
-from telkomsel.handler_1 import *
-from telkomsel.handler_2 import *
+from Get_Promo.telkomsel.handler_1 import *
+from Get_Promo.telkomsel.handler_2 import *
 
 
-def gate_1():
+def promo_1():
     save = json.dumps({
         'provider': 'telkomsel',
         'name': name_1(),
@@ -43,7 +43,7 @@ def gate_1():
     #     raise Exception(" Except error from gate_1")
 
 
-def gate_2():
+def promo_2():
     save = json.dumps({
         'provider': 'telkomsel',
         'name': name_2(),
