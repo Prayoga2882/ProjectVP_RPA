@@ -1,4 +1,5 @@
 import json
+from selenium.webdriver.chrome.options import Options
 
 
 def json_cleaner(rate_dict):
@@ -59,3 +60,16 @@ def rate_Indosat(soup, rate_dict):
 
     result = json.dumps(rate_dict)
     return result
+
+
+def chrome_option():
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")  # Menambahkan opsi headless
+    chrome_options.add_argument("--disable-gpu")  # Menonaktifkan GPU
+    chrome_options.add_argument("--disable-infobars")  # Menonaktifkan info bars
+    chrome_options.add_argument("--disable-notifications")  # Menonaktifkan notifikasi
+    chrome_options.add_argument("--window-size=1920x1080")  # Mengatur ukuran jendela
+    chrome_options.add_argument("--disable-extensions")  # Menonaktifkan ekstensi
+    chrome_options.add_argument("--disable-dev-shm-usage")  # Menonaktifkan penggunaan /dev/shm
+    chrome_options.add_argument("--no-sandbox")  # Menonaktifkan mode sandbox
+    return chrome_options

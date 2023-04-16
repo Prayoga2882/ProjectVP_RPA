@@ -4,7 +4,7 @@ import requests
 from lxml import html
 
 
-def name_1():
+def name_TSEL1():
     url = 'https://www.telkomsel.com/promo/DANA-cashback'
     text, soup = html_read_1(url)
     my_paragraph = soup.find('h1')
@@ -14,7 +14,7 @@ def name_1():
     return text
 
 
-def term_and_condition_1():
+def term_and_condition_TSEL1():
     url = 'https://www.telkomsel.com/promo/DANA-cashback'
     response = requests.get(url)
 
@@ -28,7 +28,7 @@ def term_and_condition_1():
     return li_text
 
 
-def periode_1():
+def periode_TSEL1():
     url = 'https://www.telkomsel.com/promo/DANA-cashback'
     text, soup = html_read_1(url)
 

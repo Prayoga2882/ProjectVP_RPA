@@ -1,3 +1,4 @@
+from Get_Promo.indosat.gate import promo_ISAT1
 from Get_Promo.telkomsel.gate import *
 import tkinter as tk
 from Get_Rate.ByPulsa import *
@@ -8,7 +9,10 @@ root.geometry("600x400")
 input_label = tk.Label(root, text="MINI PROJECT II")
 input_label.pack()
 
-button = tk.Button(root, text="Generate Promo Telkomsel!", command=promo_1)
+button = tk.Button(root, text="Generate Promo Telkomsel!", command=promo_TSEL1)
+button.pack()
+
+button = tk.Button(root, text="Generate Promo Indosat!", command=promo_ISAT1)
 button.pack()
 
 button = tk.Button(root, text="Generate Rate Via Pulsa!", command=get_rate_via_pulsa)

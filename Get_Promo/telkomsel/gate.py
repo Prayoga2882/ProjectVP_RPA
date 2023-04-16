@@ -1,14 +1,15 @@
 import json
 from Get_Promo.telkomsel.handler_1 import *
 from Get_Promo.telkomsel.handler_2 import *
+from tkinter import messagebox
 
 
-def promo_1():
+def promo_TSEL1():
     save = json.dumps({
         'provider': 'telkomsel',
-        'name': name_1(),
-        'periode': periode_1(),
-        'term_and_condition': term_and_condition_1(),
+        'name': name_TSEL1(),
+        'periode': periode_TSEL1(),
+        'term_and_condition': term_and_condition_TSEL1(),
         'status': 'active'
     })
     data = json.loads(save)
@@ -42,13 +43,15 @@ def promo_1():
     #     print(e)
     #     raise Exception(" Except error from gate_1")
 
+    messagebox.showinfo("Proses Selesai", "Proses Generate Promo Telkomsel telah selesai.")
+
 
 def promo_2():
     save = json.dumps({
         'provider': 'telkomsel',
-        'name': name_2(),
-        'periode': periode_2(),
-        'term_and_condition': term_and_condition_2(),
+        'name': name_TSEL2(),
+        'periode': periode_TSEL2(),
+        'term_and_condition': term_and_condition_TSEL2(),
         'status': 'active'
     })
     data = json.loads(save)

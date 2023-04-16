@@ -1,4 +1,6 @@
 import json
+from tkinter import messagebox
+
 import trafilatura
 from bs4 import BeautifulSoup
 from helper.index import *
@@ -19,6 +21,7 @@ def get_rate_via_pulsa():
     json_cleaner(rate_dict)
     result = json.dumps(rate_dict)
     print(result)
+    messagebox.showinfo("Proses Selesai", "Proses telah selesai.")
 
 
 def get_rate_by_pulsa():
@@ -33,6 +36,7 @@ def get_rate_by_pulsa():
 
     result = json.dumps(rate_dict)
     print(result)
+    messagebox.showinfo("Proses Selesai", "Proses telah selesai.")
 
 
 if __name__ == '__main__':
