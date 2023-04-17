@@ -1,5 +1,7 @@
 import json
 from selenium.webdriver.chrome.options import Options
+import re
+from datetime import datetime
 
 
 def json_cleaner(rate_dict):
@@ -73,3 +75,34 @@ def chrome_option():
     chrome_options.add_argument("--disable-dev-shm-usage")  # Menonaktifkan penggunaan /dev/shm
     chrome_options.add_argument("--no-sandbox")  # Menonaktifkan mode sandbox
     return chrome_options
+
+
+def format_periode(data):
+    # data = "01April-20April2023(00.00–23.59WIB)"
+    # Menggunakan regular expression untuk mengekstrak tanggal
+    tanggal_awal = re.findall(r"\d{2}[A-Za-z]+", data)[0]
+    tanggal_akhir = re.findall(r"\d{2}[A-Za-z]+\d{4}", data)
+
+    # Mendapatkan tahun saat ini
+    tahun_sekarang = datetime.now().year
+
+    # Memeriksa apakah ada hasil pencarian untuk tanggal akhir
+    if tanggal_akhir:
+        tanggal_akhir = tanggal_akhir[0]
+        tanggal_akhir = datetime.strptime(tanggal_akhir, '%d%B%Y').replace(year=tahun_sekarang).strftime('%Y-%m-%d')
+    else:
+        tanggal_akhir = None
+
+    # Mengubah format tanggal awal menjadi format yang diinginkan
+    tanggal_awal = datetime.strptime(tanggal_awal, '%d%B').replace(year=tahun_sekarang).strftime('%Y-%m-%d')
+
+    # Membentuk dictionary dengan format tanggal yang diinginkan
+    json_data = {
+        "startDate": tanggal_awal,
+        "endDate": tanggal_akhir
+    }
+    start_date = json_data['startDate']
+    end_date = json_data['endDate']
+
+    return start_date, end_date
+

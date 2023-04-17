@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import requests
 from lxml import html
 
+from helper.index import format_periode
+
 
 def name_TSEL1():
     url = 'https://www.telkomsel.com/promo/DANA-cashback'
@@ -37,23 +39,10 @@ def periode_TSEL1():
         text = my_paragraph.get_text()
     text = text.replace('\n', '')
     text = text.replace(' ', '')
-    # Mencari posisi angka pertama setelah 'PERIODEPROMO'
-    posisi_angka_pertama = text.find('0')
+    text = text.replace('PERIODEPROMO', '')
+    result = format_periode(text)
 
-    # Menyisipkan spasi antara 'PERIODE' dan 'PROMO'
-    text = text[:posisi_angka_pertama] + ' ' + text[posisi_angka_pertama:]
-
-    # Menyisipkan spasi antara tanggal dan bulan pada periode promo
-    posisi_tanggal_akhir = text.find(' ', posisi_angka_pertama)
-    posisi_bulan_awal = text.find('-', posisi_tanggal_akhir)
-    posisi_bulan_akhir = text.find(' ', posisi_bulan_awal)
-    text = text[:posisi_bulan_awal + 1] + ' ' + text[posisi_bulan_awal + 1:posisi_bulan_akhir] + ' ' + text[
-                                                                                                       posisi_bulan_akhir:]
-
-    # Mengganti tanda '–' dengan '-'
-    text = text.replace('–', '-')
-
-    return text
+    return result[0], result[1]
 
 
 def html_read_1(url):
