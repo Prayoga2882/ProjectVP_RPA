@@ -1,7 +1,12 @@
 import json
+import time
+import requests
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import trafilatura
+from bs4 import BeautifulSoup
 from selenium.webdriver.chrome.options import Options
-import re
-from datetime import datetime
+from tkinter import messagebox
 
 
 def json_cleaner(rate_dict):
@@ -78,25 +83,344 @@ def chrome_option():
 
 
 def format_periode(data):
-    # data = "01April-20April2023(00.00–23.59WIB)"
-    tanggal_awal = re.findall(r"\d{2}[A-Za-z]+", data)[0]
-    tanggal_akhir = re.findall(r"\d{2}[A-Za-z]+\d{4}", data)
-    tahun_sekarang = datetime.now().year
+    # data = '18 April - 30 April 2023'
+    date_range, year = data.rsplit(" ", 1)
+    start_date_str, end_date_str = date_range.split(" - ")
 
-    if tanggal_akhir:
-        tanggal_akhir = tanggal_akhir[0]
-        tanggal_akhir = datetime.strptime(tanggal_akhir, '%d%B%Y').replace(year=tahun_sekarang).strftime('%Y-%m-%d')
-    else:
-        tanggal_akhir = None
-
-    tanggal_awal = datetime.strptime(tanggal_awal, '%d%B').replace(year=tahun_sekarang).strftime('%Y-%m-%d')
-
-    json_data = {
-        "startDate": tanggal_awal,
-        "endDate": tanggal_akhir
+    output = {
+        "startDate": f"{year.strip()}-{get_month_number(start_date_str.split()[1])}-{start_date_str.split()[0]}",
+        "endDate": f"{year.strip()}-{get_month_number(end_date_str.split()[1])}-{end_date_str.split()[0]}"
     }
-    start_date = json_data['startDate']
-    end_date = json_data['endDate']
+    return output
 
-    return start_date, end_date
 
+def show_messagebox(root):
+    messagebox.showinfo("Message", "Hello, World!")
+    root.destroy()
+
+
+def telkomsel_core():
+    downloaded = trafilatura.fetch_url('https://www.telkomsel.com/promo')
+    soup = BeautifulSoup(downloaded, 'html.parser')
+    element_rate = soup.find_all('div', class_='promo-name')
+    # name
+    name = []
+    for i in element_rate:
+        if i.text != '':
+            name.append(i.text)
+
+    hit_promo1(name)
+    hit_promo2(name)
+    hit_promo3(name)
+    hit_promo4(name)
+    hit_promo5(name)
+    hit_promo6(name)
+
+
+def hit_promo1(name):
+    url = "https://www.telkomsel.com/promo"
+    # chrome_options = chrome_option()
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.get(url)
+    time.sleep(3)
+
+    cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
+    driver.find_element(By.XPATH, cookes).click()
+    time.sleep(3)
+    scroll_25(driver)
+
+    promo1 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[1]/div/div/div[2]'
+    driver.find_element(By.XPATH, promo1).click()
+    time.sleep(3)
+    scroll_25(driver)
+
+    result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
+    periode = format_periode(result_tnc)
+    scroll_25(driver)
+
+    click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
+    driver.find_element(By.XPATH, click2).click()
+    time.sleep(3)
+
+    tnc = '//*[@id="accordionA4"]'
+    result_tnc = driver.find_element(By.XPATH, tnc).text
+    try:
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "name": name[0],
+            "tnc": result_tnc,
+            "startDate": periode["startDate"],
+            "endDate": periode["endDate"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print(e)
+        raise Exception(" Except error from hit_promo1")
+
+
+def hit_promo2(name):
+    url = "https://www.telkomsel.com/promo"
+    # chrome_options = chrome_option()
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.get(url)
+    time.sleep(3)
+
+    cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
+    driver.find_element(By.XPATH, cookes).click()
+    time.sleep(3)
+    scroll_25(driver)
+
+    promo2 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[2]/div/div/div[2]/div[2]'
+    driver.find_element(By.XPATH, promo2).click()
+    time.sleep(3)
+    scroll_25(driver)
+
+    result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
+    periode = format_periode(result_tnc)
+    scroll_25(driver)
+
+    click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
+    driver.find_element(By.XPATH, click2).click()
+    time.sleep(3)
+
+    tnc = '//*[@id="accordionA4"]'
+    result_tnc = driver.find_element(By.XPATH, tnc).text
+    try:
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "name": name[1],
+            "tnc": result_tnc,
+            "startDate": periode["startDate"],
+            "endDate": periode["endDate"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print(e)
+        raise Exception(" Except error from hit_promo2")
+
+
+def hit_promo3(name):
+    url = "https://www.telkomsel.com/promo"
+    # chrome_options = chrome_option()
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.get(url)
+    time.sleep(3)
+
+    cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
+    driver.find_element(By.XPATH, cookes).click()
+    time.sleep(3)
+    scroll_25(driver)
+
+    promo3 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[3]/div/div/div[2]/div[2]'
+    driver.find_element(By.XPATH, promo3).click()
+    time.sleep(3)
+    scroll_25(driver)
+
+    result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
+    periode = format_periode(result_tnc)
+    scroll_25(driver)
+
+    click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
+    driver.find_element(By.XPATH, click2).click()
+    time.sleep(3)
+
+    tnc = '//*[@id="accordionA4"]'
+    result_tnc = driver.find_element(By.XPATH, tnc).text
+    try:
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "name": name[2],
+            "tnc": result_tnc,
+            "startDate": periode["startDate"],
+            "endDate": periode["endDate"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print(e)
+        raise Exception(" Except error from hit_promo3")
+
+
+def hit_promo4(name):
+    url = "https://www.telkomsel.com/promo"
+    # chrome_options = chrome_option()
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.get(url)
+    time.sleep(3)
+
+    cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
+    driver.find_element(By.XPATH, cookes).click()
+    time.sleep(3)
+    scroll_25(driver)
+
+    promo4 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[4]/div/div/div[2]/div[2]'
+    driver.find_element(By.XPATH, promo4).click()
+    time.sleep(3)
+    scroll_25(driver)
+
+    result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
+    periode = format_periode(result_tnc)
+    scroll_25(driver)
+
+    click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
+    driver.find_element(By.XPATH, click2).click()
+    time.sleep(3)
+
+    tnc = '//*[@id="accordionA4"]'
+    result_tnc = driver.find_element(By.XPATH, tnc).text
+    try:
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "name": name[3],
+            "tnc": result_tnc,
+            "startDate": periode["startDate"],
+            "endDate": periode["endDate"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print(e)
+        raise Exception(" Except error from hit_promo4")
+
+
+def hit_promo5(name):
+    url = "https://www.telkomsel.com/promo"
+    # chrome_options = chrome_option()
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.get(url)
+    time.sleep(3)
+
+    cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
+    driver.find_element(By.XPATH, cookes).click()
+    time.sleep(3)
+    scroll_25(driver)
+
+    promo5 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[5]/div/div/div[2]/div[2]'
+    driver.find_element(By.XPATH, promo5).click()
+    time.sleep(3)
+    scroll_25(driver)
+
+    result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
+    periode = format_periode(result_tnc)
+    scroll_25(driver)
+
+    click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
+    driver.find_element(By.XPATH, click2).click()
+    time.sleep(3)
+
+    tnc = '//*[@id="accordionA4"]'
+    result_tnc = driver.find_element(By.XPATH, tnc).text
+    try:
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "name": name[4],
+            "tnc": result_tnc,
+            "startDate": periode["startDate"],
+            "endDate": periode["endDate"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print(e)
+        raise Exception(" Except error from hit_promo5")
+
+
+def hit_promo6(name):
+    url = "https://www.telkomsel.com/promo"
+    # chrome_options = chrome_option()
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.get(url)
+    time.sleep(3)
+
+    cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
+    driver.find_element(By.XPATH, cookes).click()
+    time.sleep(3)
+    scroll_25(driver)
+
+    promo6 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[6]/div/div/div[2]/div[2]'
+    driver.find_element(By.XPATH, promo6).click()
+    time.sleep(3)
+    scroll_25(driver)
+
+    result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
+    periode = format_periode(result_tnc)
+    scroll_25(driver)
+
+    click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
+    driver.find_element(By.XPATH, click2).click()
+    time.sleep(3)
+
+    tnc = '//*[@id="accordionA4"]'
+    result_tnc = driver.find_element(By.XPATH, tnc).text
+    try:
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "name": name[5],
+            "tnc": result_tnc,
+            "startDate": periode["startDate"],
+            "endDate": periode["endDate"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print(e)
+        raise Exception(" Except error from hit_promo6")
+
+
+def scroll_25(driver):
+    driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.25, behavior: 'smooth'});")
+    time.sleep(3)
+
+
+def get_month_number(month):
+    months = {
+        'January': '01',
+        'February': '02',
+        'March': '03',
+        'April': '04',
+        'May': '05',
+        'June': '06',
+        'July': '07',
+        'August': '08',
+        'September': '09',
+        'October': '10',
+        'November': '11',
+        'December': '12'
+    }
+    return months[month]
+
+
+if __name__ == '__main__':
+    telkomsel_core()
