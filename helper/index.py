@@ -79,24 +79,18 @@ def chrome_option():
 
 def format_periode(data):
     # data = "01April-20April2023(00.00–23.59WIB)"
-    # Menggunakan regular expression untuk mengekstrak tanggal
     tanggal_awal = re.findall(r"\d{2}[A-Za-z]+", data)[0]
     tanggal_akhir = re.findall(r"\d{2}[A-Za-z]+\d{4}", data)
-
-    # Mendapatkan tahun saat ini
     tahun_sekarang = datetime.now().year
 
-    # Memeriksa apakah ada hasil pencarian untuk tanggal akhir
     if tanggal_akhir:
         tanggal_akhir = tanggal_akhir[0]
         tanggal_akhir = datetime.strptime(tanggal_akhir, '%d%B%Y').replace(year=tahun_sekarang).strftime('%Y-%m-%d')
     else:
         tanggal_akhir = None
 
-    # Mengubah format tanggal awal menjadi format yang diinginkan
     tanggal_awal = datetime.strptime(tanggal_awal, '%d%B').replace(year=tahun_sekarang).strftime('%Y-%m-%d')
 
-    # Membentuk dictionary dengan format tanggal yang diinginkan
     json_data = {
         "startDate": tanggal_awal,
         "endDate": tanggal_akhir

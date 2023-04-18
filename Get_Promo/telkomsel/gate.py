@@ -5,7 +5,7 @@ from tkinter import messagebox
 import threading
 
 
-def launch():
+def launch_TSEL():
     thread1 = threading.Thread(target=promo_TSEL1)
     thread2 = threading.Thread(target=promo_TSEL2)
 
