@@ -6,21 +6,14 @@ import threading
 
 
 def launch():
-    # Membuat thread untuk fungsi pertama
     thread1 = threading.Thread(target=promo_TSEL1)
-
-    # Membuat thread untuk fungsi kedua
     thread2 = threading.Thread(target=promo_TSEL2)
 
-    # Menjalankan thread-thread
     thread1.start()
     thread2.start()
 
-    # Menunggu thread-thread selesai
     thread1.join()
     thread2.join()
-
-    # Kode setelah thread-thread selesai dijalankan
     print("Semua fungsi selesai dijalankan.")
     messagebox.showinfo("Proses Selesai", "Proses Generate Promo Telkomsel telah selesai.")
 
