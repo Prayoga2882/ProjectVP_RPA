@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import requests
 from lxml import html
 
+from helper.index import format_periode
+
 
 def name_TSEL2():
     url = 'https://www.telkomsel.com/promo/gopay-cashback-seluruh-pelanggan'
@@ -29,7 +31,7 @@ def term_and_condition_TSEL2():
 
 
 def periode_TSEL2():
-    url = 'https://www.telkomsel.com/promo/gopay-cashback-seluruh-pelanggan'
+    url = 'https://www.telkomsel.com/promo/DANA-cashback'
     text, soup = html_read_2(url)
 
     my_paragraph = soup.find('div', {'class': 'left-promo-content'})
@@ -37,15 +39,10 @@ def periode_TSEL2():
         text = my_paragraph.get_text()
     text = text.replace('\n', '')
     text = text.replace(' ', '')
-    string_setelah_1 = text.replace("\u2013", "-")
+    text = text.replace('PERIODEPROMO', '')
+    result = format_periode(text)
 
-    string_setelah_2 = string_setelah_1[:12] + " " + string_setelah_1[12:17] + " " + string_setelah_1[
-                                                                                     17:21] + " " + string_setelah_1[
-                                                                                                    21:]
-
-    string_setelah_3 = string_setelah_2[:28] + ":" + string_setelah_2[28:30] + string_setelah_2[30:]
-
-    return string_setelah_3
+    return result[0], result[1]
 
 
 def html_read_2(url):
