@@ -422,5 +422,145 @@ def get_month_number(month):
     return months[month]
 
 
+def axis_core():
+    url = 'https://www.axis.co.id/promo'
+    # chrome_options = chrome_option()
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.get(url)
+    time.sleep(3)
+
+    check = driver.find_element(By.XPATH, '//*[@id="modal-package-access"]/div/div/button/i')
+    if check:
+        check.click()
+    driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.40, behavior: 'smooth'});")
+    time.sleep(3)
+
+    step1 = '/html/body/section[1]/div/div[3]/div/div[1]/a/div[1]/img'
+    driver.find_element(By.XPATH, step1).click()
+    time.sleep(3)
+
+    step2 = '/html/body/section[1]/div/div/div/div[1]/h1'
+    name = driver.find_element(By.XPATH, step2).text
+    time.sleep(3)
+
+    step3 = '/html/body/section[1]/div/div/div/div[2]/p[2]'
+    periode = driver.find_element(By.XPATH, step3).text
+    result_periode = periode_format_axis(periode)
+
+    step4 = '/html/body/section[3]/div/div/div[2]/ol'
+    tnc = driver.find_element(By.XPATH, step4).text
+
+    try:
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "name": name,
+            "tnc": tnc,
+            "startDate": result_periode["startDate"],
+            "endDate": result_periode["endDate"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print(e)
+        raise Exception(" Except error from hit_promo1")
+    driver.quit()
+
+
+def XL_core():
+    url = 'https://www.xl.co.id/mobile/prabayar/promo-detail'
+    # chrome_options = chrome_option()
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.get(url)
+    time.sleep(3)
+
+    driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.30, behavior: 'smooth'});")
+    time.sleep(3)
+    step1 = '/html/body/div[1]/main/div/div[2]/div/div/div/div[1]/div[1]/a/div/div[1]/div/div/div/img'
+    driver.find_element(By.XPATH, step1).click()
+    time.sleep(3)
+
+    step2 = '/html/body/div[1]/main/div[1]/div[2]/div/h1'
+    name = driver.find_element(By.XPATH, step2).text
+    print(name)
+
+
+def periode_format_axis(data):
+    # data = "Periode Program: 1 – 30 April 2023"
+
+    # menghapus kata "Periode Program"
+    data = data.replace("Periode Program: ", "")
+
+    # mengubah format tanggal
+    tanggal = data.split(" – ")
+    start_date_str = tanggal[0] + " April 2023"
+    end_date_str = tanggal[1].replace("April 2023", "") + "April 2023"
+
+    from datetime import datetime
+    start_date = datetime.strptime(start_date_str, '%d %B %Y').strftime('%Y-%m-%d')
+    end_date = datetime.strptime(end_date_str, '%d %B %Y').strftime('%Y-%m-%d')
+
+    # menyimpan hasil ke dalam dictionary
+    hasil = {
+        "startDate": start_date,
+        "endDate": end_date
+    }
+
+    return hasil
+
+
+def indosat_core():
+    url = "https://indosatooredoo.com/portal/id/pspromolanding"
+    # chrome_options = chrome_option()
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.get(url)
+    time.sleep(3)
+
+    step1 = '/html/body/div[1]/section[2]/div/div/div[2]/div/section[1]/div[1]/h4'
+    name = driver.find_element(By.XPATH, step1).text
+    print(name)
+    time.sleep(3)
+
+    step2 = '/html/body/div[1]/section[2]/div/div/div[2]/div/section[1]/div[2]/div/div/div[3]/a/span'
+    driver.find_element(By.XPATH, step2).click()
+    time.sleep(3)
+    driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.50, behavior: 'smooth'});")
+    time.sleep(3)
+
+    step3 = '/html/body/div[1]/div[4]/section[3]/div/div[2]/div/div/div/div[3]/div[1]/a'
+    driver.find_element(By.XPATH, step3).click()
+    time.sleep(3)
+
+    step4 = '/html/body/div[1]/div[4]/section[3]/div/div[2]/div/div/div/div[3]/div[2]/div/div'
+    periode = driver.find_element(By.XPATH, step4).text
+    print(periode)
+    time.sleep(3)
+
+    # try:
+    #     url = 'https://ratepromo.vercel.app/promo'
+    #     payload = {
+    #         "name": name,
+    #         "tnc": result_tnc,
+    #         "startDate": periode["startDate"],
+    #         "endDate": periode["endDate"],
+    #         "isActive": 1
+    #     }
+    #
+    #     response = requests.post(url, json=payload)
+    #     requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+    #     print('Status Code:', response.status_code)
+    #     print('Response:', response.json())
+    # except Exception as e:
+    #     print(e)
+    #     raise Exception(" Except error from hit_promo5")
+    driver.quit()
+
+
 if __name__ == '__main__':
-    telkomsel_core()
+    axis_core()
