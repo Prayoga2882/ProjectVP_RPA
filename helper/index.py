@@ -119,8 +119,8 @@ def telkomsel_core():
 
 def hit_promo1(name):
     url = "https://www.telkomsel.com/promo"
-    # chrome_options = chrome_option()
-    driver = webdriver.Chrome()
+    chrome_options = chrome_option()
+    driver = webdriver.Chrome(chrome_options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(3)
@@ -167,8 +167,8 @@ def hit_promo1(name):
 
 def hit_promo2(name):
     url = "https://www.telkomsel.com/promo"
-    # chrome_options = chrome_option()
-    driver = webdriver.Chrome()
+    chrome_options = chrome_option()
+    driver = webdriver.Chrome(chrome_options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(3)
@@ -215,8 +215,8 @@ def hit_promo2(name):
 
 def hit_promo3(name):
     url = "https://www.telkomsel.com/promo"
-    # chrome_options = chrome_option()
-    driver = webdriver.Chrome()
+    chrome_options = chrome_option()
+    driver = webdriver.Chrome(chrome_options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(3)
@@ -263,8 +263,8 @@ def hit_promo3(name):
 
 def hit_promo4(name):
     url = "https://www.telkomsel.com/promo"
-    # chrome_options = chrome_option()
-    driver = webdriver.Chrome()
+    chrome_options = chrome_option()
+    driver = webdriver.Chrome(chrome_options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(3)
@@ -311,8 +311,8 @@ def hit_promo4(name):
 
 def hit_promo5(name):
     url = "https://www.telkomsel.com/promo"
-    # chrome_options = chrome_option()
-    driver = webdriver.Chrome()
+    chrome_options = chrome_option()
+    driver = webdriver.Chrome(chrome_options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(3)
@@ -359,8 +359,8 @@ def hit_promo5(name):
 
 def hit_promo6(name):
     url = "https://www.telkomsel.com/promo"
-    # chrome_options = chrome_option()
-    driver = webdriver.Chrome()
+    chrome_options = chrome_option()
+    driver = webdriver.Chrome(chrome_options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(3)
@@ -464,6 +464,7 @@ def axis_core():
     try:
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
+            "provider": "axis",
             "name": name,
             "tnc": tnc,
             "startDate": result_periode["startDate"],
