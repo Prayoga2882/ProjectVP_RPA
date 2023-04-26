@@ -148,6 +148,7 @@ def hit_promo1(name):
     try:
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
+            "provider": "telkomsel",
             "name": name[0],
             "tnc": result_tnc,
             "startDate": periode["startDate"],
@@ -195,6 +196,7 @@ def hit_promo2(name):
     try:
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
+            "provider": "telkomsel",
             "name": name[1],
             "tnc": result_tnc,
             "startDate": periode["startDate"],
@@ -242,6 +244,7 @@ def hit_promo3(name):
     try:
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
+            "provider": "telkomsel",
             "name": name[2],
             "tnc": result_tnc,
             "startDate": periode["startDate"],
@@ -289,6 +292,7 @@ def hit_promo4(name):
     try:
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
+            "provider": "telkomsel",
             "name": name[3],
             "tnc": result_tnc,
             "startDate": periode["startDate"],
@@ -336,6 +340,7 @@ def hit_promo5(name):
     try:
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
+            "provider": "telkomsel",
             "name": name[4],
             "tnc": result_tnc,
             "startDate": periode["startDate"],
@@ -383,6 +388,7 @@ def hit_promo6(name):
     try:
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
+            "provider": "telkomsel",
             "name": name[5],
             "tnc": result_tnc,
             "startDate": periode["startDate"],
@@ -450,6 +456,10 @@ def axis_core():
 
     step4 = '/html/body/section[3]/div/div/div[2]/ol'
     tnc = driver.find_element(By.XPATH, step4).text
+    print(name)
+    print(tnc)
+    print(result_periode["startDate"])
+    print(result_periode["endDate"])
 
     try:
         url = 'https://ratepromo.vercel.app/promo'
