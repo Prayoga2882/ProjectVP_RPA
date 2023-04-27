@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import trafilatura
 from bs4 import BeautifulSoup
+from datetime import datetime
 from selenium.webdriver.chrome.options import Options
 from tkinter import messagebox
 
@@ -13,8 +14,8 @@ def json_cleaner(rate_dict):
     indices_to_remove = [1, 3, 5, 7, 9, 11]
     indices_to_remove.sort(reverse=True)
     for index in indices_to_remove:
-        if index < len(rate_dict['Rate']):
-            rate_dict['Rate'].pop(index)
+        if index < len(rate_dict['rate']):
+            rate_dict['rate'].pop(index)
 
 
 def rate_telkomsel(soup, rate_dict):
@@ -24,7 +25,7 @@ def rate_telkomsel(soup, rate_dict):
     for element in element_rate:
         rate_name = element.find('span', class_='pname fleft').get_text(strip=True)
         rate_value = element.find('span', class_='ppercent fright').get_text(strip=True)
-        rate_dict["Rate"].append({rate_name: rate_value})
+        rate_dict["rate"].append({rate_name: rate_value})
 
     result = json.dumps(rate_dict)
     return result
@@ -37,7 +38,7 @@ def rate_xl(soup, rate_dict):
     for element in element_rate:
         rate_name = element.find('span', class_='pname fleft').get_text(strip=True)
         rate_value = element.find('span', class_='ppercent fright').get_text(strip=True)
-        rate_dict["Rate"].append({rate_name: rate_value})
+        rate_dict["rate"].append({rate_name: rate_value})
 
     result = json.dumps(rate_dict)
     return result
@@ -50,7 +51,7 @@ def rate_Three(soup, rate_dict):
     for element in element_rate:
         rate_name = element.find('span', class_='pname fleft').get_text(strip=True)
         rate_value = element.find('span', class_='ppercent fright').get_text(strip=True)
-        rate_dict["Rate"].append({rate_name: rate_value})
+        rate_dict["rate"].append({rate_name: rate_value})
 
     result = json.dumps(rate_dict)
     return result
@@ -63,7 +64,7 @@ def rate_Indosat(soup, rate_dict):
     for element in element_rate:
         rate_name = element.find('span', class_='pname fleft').get_text(strip=True)
         rate_value = element.find('span', class_='ppercent fright').get_text(strip=True)
-        rate_dict["Rate"].append({rate_name: rate_value})
+        rate_dict["rate"].append({rate_name: rate_value})
 
     result = json.dumps(rate_dict)
     return result
@@ -99,7 +100,7 @@ def show_messagebox(root):
     root.destroy()
 
 
-def telkomsel_core():
+def generate_promo_telkomsel():
     downloaded = trafilatura.fetch_url('https://www.telkomsel.com/promo')
     soup = BeautifulSoup(downloaded, 'html.parser')
     element_rate = soup.find_all('div', class_='promo-name')
@@ -109,18 +110,20 @@ def telkomsel_core():
         if i.text != '':
             name.append(i.text)
 
-    hit_promo1(name)
-    hit_promo2(name)
-    hit_promo3(name)
-    hit_promo4(name)
-    hit_promo5(name)
-    hit_promo6(name)
+    hit_promoTSEL1(name)
+    hit_promoTSEL2(name)
+    hit_promoTSEL3(name)
+    hit_promoTSEL4(name)
+    hit_promoTSEL5(name)
+    hit_promoTSEL6(name)
+
+    messagebox.showinfo("Success", "Promo Telkomsel has been generated!")
 
 
-def hit_promo1(name):
+def hit_promoTSEL1(name):
     url = "https://www.telkomsel.com/promo"
     chrome_options = chrome_option()
-    driver = webdriver.Chrome(chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(3)
@@ -165,10 +168,10 @@ def hit_promo1(name):
         raise Exception(" Except error from hit_promo1")
 
 
-def hit_promo2(name):
+def hit_promoTSEL2(name):
     url = "https://www.telkomsel.com/promo"
     chrome_options = chrome_option()
-    driver = webdriver.Chrome(chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(3)
@@ -213,10 +216,10 @@ def hit_promo2(name):
         raise Exception(" Except error from hit_promo2")
 
 
-def hit_promo3(name):
+def hit_promoTSEL3(name):
     url = "https://www.telkomsel.com/promo"
     chrome_options = chrome_option()
-    driver = webdriver.Chrome(chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(3)
@@ -261,10 +264,10 @@ def hit_promo3(name):
         raise Exception(" Except error from hit_promo3")
 
 
-def hit_promo4(name):
+def hit_promoTSEL4(name):
     url = "https://www.telkomsel.com/promo"
     chrome_options = chrome_option()
-    driver = webdriver.Chrome(chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(3)
@@ -309,10 +312,10 @@ def hit_promo4(name):
         raise Exception(" Except error from hit_promo4")
 
 
-def hit_promo5(name):
+def hit_promoTSEL5(name):
     url = "https://www.telkomsel.com/promo"
     chrome_options = chrome_option()
-    driver = webdriver.Chrome(chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(3)
@@ -357,10 +360,10 @@ def hit_promo5(name):
         raise Exception(" Except error from hit_promo5")
 
 
-def hit_promo6(name):
+def hit_promoTSEL6(name):
     url = "https://www.telkomsel.com/promo"
     chrome_options = chrome_option()
-    driver = webdriver.Chrome(chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(3)
@@ -428,14 +431,20 @@ def get_month_number(month):
     return months[month]
 
 
-def axis_core():
+def generate_promo_axis():
+    hit_promoAXIS1()
+    hit_promoAXIS2()
+
+    messagebox.showinfo("Success", "Promo Axis has been generated!")
+
+
+def hit_promoAXIS1():
     url = 'https://www.axis.co.id/promo'
-    # chrome_options = chrome_option()
-    driver = webdriver.Chrome()
+    chrome_options = chrome_option()
+    driver = webdriver.Chrome(options=chrome_options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(3)
-
     check = driver.find_element(By.XPATH, '//*[@id="modal-package-access"]/div/div/button/i')
     if check:
         check.click()
@@ -456,10 +465,6 @@ def axis_core():
 
     step4 = '/html/body/section[3]/div/div/div[2]/ol'
     tnc = driver.find_element(By.XPATH, step4).text
-    print(name)
-    print(tnc)
-    print(result_periode["startDate"])
-    print(result_periode["endDate"])
 
     try:
         url = 'https://ratepromo.vercel.app/promo'
@@ -478,7 +483,60 @@ def axis_core():
         print('Response:', response.json())
     except Exception as e:
         print(e)
-        raise Exception(" Except error from hit_promo1")
+        raise Exception(" Except error from hit_promoAXIS1")
+
+    driver.quit()
+
+
+def hit_promoAXIS2():
+    url = 'https://www.axis.co.id/promo'
+    chrome_options = chrome_option()
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.maximize_window()
+    driver.get(url)
+    time.sleep(3)
+    check = driver.find_element(By.XPATH, '//*[@id="modal-package-access"]/div/div/button/i')
+    if check:
+        check.click()
+    driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.40, behavior: 'smooth'});")
+    time.sleep(3)
+
+    step1 = '/html/body/section[1]/div/div[3]/div/div[2]/a/div[1]/img'
+    driver.find_element(By.XPATH, step1).click()
+    time.sleep(3)
+
+    step2 = '/html/body/section[1]/div/div/div/div[1]/h1'
+    name = driver.find_element(By.XPATH, step2).text
+    time.sleep(3)
+
+    step3 = '/html/body/section[1]/div/div/div/div[2]/p[2]'
+    periode = driver.find_element(By.XPATH, step3).text
+    print("periode  :", periode)
+    result_periode = periode_format_axis(periode)
+
+    # '/html/body/section[4]/div/div/div[2]/ul'
+    step4 = '/html/body/section[3]/div/div/div[2]/ol'
+    tnc = driver.find_element(By.XPATH, step4).text
+
+    try:
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "provider": "axis",
+            "name": name,
+            "tnc": tnc,
+            "startDate": result_periode["startDate"],
+            "endDate": result_periode["endDate"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print(e)
+        raise Exception(" Except error from hit_promoAXIS2")
+
     driver.quit()
 
 
@@ -506,17 +564,23 @@ def periode_format_axis(data):
 
     # menghapus kata "Periode Program"
     data = data.replace("Periode Program: ", "")
+    data = data.replace("Periode Promo: ", "")
 
-    # mengubah format tanggal
+    # split tanggal menjadi start date dan end date
     tanggal = data.split(" – ")
+
+    # pastikan jumlah elemen di dalam tanggal adalah 2
+    if len(tanggal) < 2:
+        return None
+
     start_date_str = tanggal[0] + " April 2023"
     end_date_str = tanggal[1].replace("April 2023", "") + "April 2023"
 
-    from datetime import datetime
+    # ubah format tanggal menggunakan datetime
     start_date = datetime.strptime(start_date_str, '%d %B %Y').strftime('%Y-%m-%d')
     end_date = datetime.strptime(end_date_str, '%d %B %Y').strftime('%Y-%m-%d')
 
-    # menyimpan hasil ke dalam dictionary
+    # simpan hasil dalam dictionary
     hasil = {
         "startDate": start_date,
         "endDate": end_date
@@ -574,4 +638,4 @@ def indosat_core():
 
 
 if __name__ == '__main__':
-    axis_core()
+    generate_promo_telkomsel()

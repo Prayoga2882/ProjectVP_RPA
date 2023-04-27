@@ -1,21 +1,25 @@
 import tkinter as tk
-
-from Get_Promo.index import entrypoint
 from Get_Rate.index import *
 
 root = tk.Tk()
-root.title("MINI PROJECT II")
+root.title("VIA PULSA GLOBAL INDONESIA")
 root.geometry("600x400")
 input_label = tk.Label(root, text="MINI PROJECT II")
 input_label.pack()
 
-button = tk.Button(root, text="Generate Promo!", command=entrypoint)
+button = tk.Button(root, text="Generate Promo Telkomsel!", command=generate_promo_telkomsel)
+button.pack()
+
+button = tk.Button(root, text="Generate Promo Axis!", command=generate_promo_axis)
 button.pack()
 
 button = tk.Button(root, text="Generate Rate Via Pulsa!", command=get_rate_via_pulsa)
 button.pack()
 
-button = tk.Button(root, text="Generate Rate By Pulsa!", command=get_rate_by_pulsa)
+button = tk.Button(root, text="Generate Rate Via Pulsa!", command=get_rate_by_pulsa)
+button.pack()
+
+button = tk.Button(root, text="Generate Rate Sukma Convert!", command=get_rate_sukma_convert)
 button.pack()
 
 result_label = tk.Label(root, text="")
