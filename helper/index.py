@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from selenium.webdriver.chrome.options import Options
 from tkinter import messagebox
+import dateutil.parser
 
 
 def json_cleaner(rate_dict):
@@ -456,7 +457,7 @@ def hit_promoAXIS1():
         name = driver.find_element(By.XPATH, step2).text
         time.sleep(3)
 
-        step3 = '/html/body/section[1]/div/div/div/div[2]/p[2]'
+        step3 = '/html/body/section[1]/div/div/div/div[2]/p[1]'
         periode = driver.find_element(By.XPATH, step3).text
         result_periode = periode_format_axis(periode)
 
@@ -546,33 +547,28 @@ def XL_core():
 
 
 def periode_format_axis(data):
-    # data = "Periode Program: 1 – 30 April 2023"
-
-    # menghapus kata "Periode Program"
+    # data = "Periode Program: 16 Maret – 15 Mei 2023"
     data = data.replace("Periode Program: ", "")
-    data = data.replace("Periode Promo: ", "")
 
-    # split tanggal menjadi start date dan end date
-    tanggal = data.split(" – ")
+    bulan = {'Januari': '01', 'Februari': '02', 'Maret': '03', 'April': '04', 'Mei': '05', 'Juni': '06',
+             'Juli': '07', 'Agustus': '08', 'September': '09', 'Oktober': '10', 'November': '11', 'Desember': '12'}
 
-    # pastikan jumlah elemen di dalam tanggal adalah 2
-    if len(tanggal) < 2:
-        return None
+    for nama_bulan, angka_bulan in bulan.items():
+        data = data.replace(nama_bulan, angka_bulan)
 
-    start_date_str = tanggal[0] + " April 2023"
-    end_date_str = tanggal[1].replace("April 2023", "") + "April 2023"
+    data = data.replace('-', ' ')
+    data = data.replace("–", "-")
+    tanggal_awal, tanggal_akhir = data.split(" - ")
 
-    # ubah format tanggal menggunakan datetime
-    start_date = datetime.strptime(start_date_str, '%d %B %Y').strftime('%Y-%m-%d')
-    end_date = datetime.strptime(end_date_str, '%d %B %Y').strftime('%Y-%m-%d')
+    parsed_tanggal_awal = dateutil.parser.parse(tanggal_awal, dayfirst=True)
+    parsed_tanggal_akhir = dateutil.parser.parse(tanggal_akhir, dayfirst=True)
 
-    # simpan hasil dalam dictionary
-    hasil = {
-        "startDate": start_date,
-        "endDate": end_date
+    json_result = {
+        "startDate": parsed_tanggal_awal.strftime("%Y-%m-%d"),
+        "endDate": parsed_tanggal_akhir.strftime("%Y-%m-%d")
     }
 
-    return hasil
+    return json_result
 
 
 def generate_promo_indosat():
@@ -712,4 +708,4 @@ def hit_promo_isat2():
 
 
 if __name__ == '__main__':
-    generate_promo_indosat()
+    generate_promo_axis()
