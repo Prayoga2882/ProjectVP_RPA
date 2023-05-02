@@ -1,9 +1,11 @@
-import json
 import time
-import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import trafilatura
+import requests
+import re
+import json
+from datetime import timedelta
 from bs4 import BeautifulSoup
 from datetime import datetime
 from selenium.webdriver.chrome.options import Options
@@ -109,13 +111,20 @@ def generate_promo_telkomsel():
     for i in element_rate:
         if i.text != '':
             name.append(i.text)
-
-    hit_promoTSEL1(name)
-    hit_promoTSEL2(name)
-    hit_promoTSEL3(name)
-    hit_promoTSEL4(name)
-    hit_promoTSEL5(name)
-    hit_promoTSEL6(name)
+    try:
+        hit_promoTSEL1(name)
+    except:
+        try:
+            hit_promoTSEL2(name)
+        except:
+            try:
+                hit_promoTSEL3(name)
+            except:
+                hit_promoTSEL4(name)
+                try:
+                    hit_promoTSEL5(name)
+                except:
+                    hit_promoTSEL6(name)
 
     messagebox.showinfo("Success", "Promo Telkomsel has been generated!")
 
@@ -581,7 +590,12 @@ def periode_format_axis(data):
     return hasil
 
 
-def indosat_core():
+def generate_promo_indosat():
+    hit_promo_isat1()
+    hit_promo_isat2()
+
+
+def hit_promo_isat1():
     url = "https://indosatooredoo.com/portal/id/pspromolanding"
     # chrome_options = chrome_option()
     driver = webdriver.Chrome()
@@ -591,14 +605,14 @@ def indosat_core():
 
     step1 = '/html/body/div[1]/section[2]/div/div/div[2]/div/section[1]/div[1]/h4'
     name = driver.find_element(By.XPATH, step1).text
-    print(name)
     time.sleep(3)
 
     step2 = '/html/body/div[1]/section[2]/div/div/div[2]/div/section[1]/div[2]/div/div/div[3]/a/span'
     driver.find_element(By.XPATH, step2).click()
-    time.sleep(3)
     driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.50, behavior: 'smooth'});")
     time.sleep(3)
+
+    url_tnc = driver.current_url
 
     step3 = '/html/body/div[1]/div[4]/section[3]/div/div[2]/div/div/div/div[3]/div[1]/a'
     driver.find_element(By.XPATH, step3).click()
@@ -606,28 +620,115 @@ def indosat_core():
 
     step4 = '/html/body/div[1]/div[4]/section[3]/div/div[2]/div/div/div/div[3]/div[2]/div/div'
     periode = driver.find_element(By.XPATH, step4).text
-    print(periode)
     time.sleep(3)
 
-    # try:
-    #     url = 'https://ratepromo.vercel.app/promo'
-    #     payload = {
-    #         "name": name,
-    #         "tnc": result_tnc,
-    #         "startDate": periode["startDate"],
-    #         "endDate": periode["endDate"],
-    #         "isActive": 1
-    #     }
-    #
-    #     response = requests.post(url, json=payload)
-    #     requests.get('https://ratepromo.vercel.app/cek-expired-promo')
-    #     print('Status Code:', response.status_code)
-    #     print('Response:', response.json())
-    # except Exception as e:
-    #     print(e)
-    #     raise Exception(" Except error from hit_promo5")
+    tanggal = re.search(r'Tanggal (\d+)', periode).group(1)
+    start_date = datetime.strptime(tanggal, '%d')
+    start_date = start_date.replace(year=2022, month=12)
+    end_date = start_date + timedelta(days=9)
+
+    json_data = {
+        "startDate": start_date.strftime('%Y-%m-%d'),
+        "endDate": end_date.strftime('%Y-%m-%d')
+    }
+
+    jadwal = json.dumps(json_data)
+    jadwal = json.loads(jadwal)
+
+    try:
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "provider": "indosat",
+            "name": name,
+            "url": url_tnc,
+            "startDate": jadwal["startDate"],
+            "endDate": jadwal["endDate"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print(e)
+        raise Exception(" Except error from hit_promo_indosat_1")
+    driver.quit()
+
+
+def hit_promo_isat2():
+    url = "https://www.indosatooredoo.com/portal/id/pspromo_inboundroaming"
+    # chrome_options = chrome_option()
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.get(url)
+    time.sleep(3)
+
+    step1 = '/html/body/div[1]/div[4]/div/div/div/h3'
+    name = driver.find_element(By.XPATH, step1).text
+    time.sleep(3)
+
+    driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.20, behavior: 'smooth'});")
+    time.sleep(3)
+    url_tnc = driver.current_url
+
+    step4 = '/html/body/div[1]/div[4]/div/div/div/p[2]'
+    periode = driver.find_element(By.XPATH, step4).text
+    time.sleep(3)
+
+    tanggal = re.findall(r'\d{1,2} \w+', periode)
+
+    bulan_dict = {
+        'Januari': 'January',
+        'Februari': 'February',
+        'Maret': 'March',
+        'April': 'April',
+        'Mei': 'May',
+        'Juni': 'June',
+        'Juli': 'July',
+        'Agustus': 'August',
+        'September': 'September',
+        'Oktober': 'October',
+        'November': 'November',
+        'Desember': 'December'
+    }
+    start_date_str = tanggal[0].split()
+    start_date_str[1] = bulan_dict[start_date_str[1]]
+    start_date_str.append('2021')
+    start_date = datetime.strptime(' '.join(start_date_str), '%d %B %Y')
+    end_date_str = tanggal[1].split()
+    end_date_str[1] = bulan_dict[end_date_str[1]]
+    end_date_str.append('2021')
+    end_date = datetime.strptime(' '.join(end_date_str), '%d %B %Y')
+
+    json_data = {
+        "startDate": start_date.strftime('%Y-%m-%d'),
+        "endDate": end_date.strftime('%Y-%m-%d')
+    }
+
+    jadwal = json.dumps(json_data)
+    jadwal = json.loads(jadwal)
+
+    try:
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "provider": "indosat",
+            "name": name,
+            "url": url_tnc,
+            "startDate": jadwal["startDate"],
+            "endDate": jadwal["endDate"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print(e)
+        raise Exception(" Except error from hit_promo_indosat_2")
     driver.quit()
 
 
 if __name__ == '__main__':
-    generate_promo_telkomsel()
+    generate_promo_indosat()

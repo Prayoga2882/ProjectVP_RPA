@@ -10,6 +10,9 @@ input_label.pack()
 button = tk.Button(root, text="Generate Promo Telkomsel!", command=generate_promo_telkomsel)
 button.pack()
 
+button = tk.Button(root, text="Generate Promo Indosat!", command=generate_promo_indosat)
+button.pack()
+
 button = tk.Button(root, text="Generate Promo Axis!", command=generate_promo_axis)
 button.pack()
 
