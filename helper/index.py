@@ -111,53 +111,46 @@ def generate_promo_telkomsel():
     for i in element_rate:
         if i.text != '':
             name.append(i.text)
-    try:
-        hit_promoTSEL1(name)
-    except:
-        try:
-            hit_promoTSEL2(name)
-        except:
-            try:
-                hit_promoTSEL3(name)
-            except:
-                hit_promoTSEL4(name)
-                try:
-                    hit_promoTSEL5(name)
-                except:
-                    hit_promoTSEL6(name)
+
+    hit_promoTSEL1(name)
+    hit_promoTSEL2(name)
+    hit_promoTSEL3(name)
+    hit_promoTSEL4(name)
+    hit_promoTSEL5(name)
+    hit_promoTSEL6(name)
 
     messagebox.showinfo("Success", "Promo Telkomsel has been generated!")
 
 
 def hit_promoTSEL1(name):
-    url = "https://www.telkomsel.com/promo"
-    chrome_options = chrome_option()
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.maximize_window()
-    driver.get(url)
-    time.sleep(3)
-
-    cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
-    driver.find_element(By.XPATH, cookes).click()
-    time.sleep(3)
-    scroll_25(driver)
-
-    promo1 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[1]/div/div/div[2]'
-    driver.find_element(By.XPATH, promo1).click()
-    time.sleep(3)
-    scroll_25(driver)
-
-    result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
-    periode = format_periode(result_tnc)
-    scroll_25(driver)
-
-    click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
-    driver.find_element(By.XPATH, click2).click()
-    time.sleep(3)
-
-    url_tnc = driver.current_url
-
     try:
+        url = "https://www.telkomsel.com/promo"
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
+        driver.find_element(By.XPATH, cookes).click()
+        time.sleep(3)
+        scroll_25(driver)
+
+        promo1 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[1]/div/div/div[2]'
+        driver.find_element(By.XPATH, promo1).click()
+        time.sleep(3)
+        scroll_25(driver)
+
+        result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
+        periode = format_periode(result_tnc)
+        scroll_25(driver)
+
+        click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
+        driver.find_element(By.XPATH, click2).click()
+        time.sleep(3)
+
+        url_tnc = driver.current_url
+
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "telkomsel",
@@ -173,38 +166,38 @@ def hit_promoTSEL1(name):
         print('Status Code:', response.status_code)
         print('Response:', response.json())
     except Exception as e:
-        print(e)
-        raise Exception(" Except error from hit_promo1")
+        print("Error from hit_promo_telkomsel 1: ", e)
 
 
 def hit_promoTSEL2(name):
-    url = "https://www.telkomsel.com/promo"
-    chrome_options = chrome_option()
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.maximize_window()
-    driver.get(url)
-    time.sleep(3)
-
-    cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
-    driver.find_element(By.XPATH, cookes).click()
-    time.sleep(3)
-    scroll_25(driver)
-
-    promo2 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[2]/div/div/div[2]/div[2]'
-    driver.find_element(By.XPATH, promo2).click()
-    time.sleep(3)
-    scroll_25(driver)
-
-    result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
-    periode = format_periode(result_tnc)
-    scroll_25(driver)
-
-    click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
-    driver.find_element(By.XPATH, click2).click()
-    time.sleep(3)
-
-    url_tnc = driver.current_url
     try:
+        url = "https://www.telkomsel.com/promo"
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
+        driver.find_element(By.XPATH, cookes).click()
+        time.sleep(3)
+        scroll_25(driver)
+
+        promo2 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[2]/div/div/div[2]/div[2]'
+        driver.find_element(By.XPATH, promo2).click()
+        time.sleep(3)
+        scroll_25(driver)
+
+        result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
+        periode = format_periode(result_tnc)
+        scroll_25(driver)
+
+        click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
+        driver.find_element(By.XPATH, click2).click()
+        time.sleep(3)
+
+        url_tnc = driver.current_url
+
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "telkomsel",
@@ -220,38 +213,38 @@ def hit_promoTSEL2(name):
         print('Status Code:', response.status_code)
         print('Response:', response.json())
     except Exception as e:
-        print(e)
-        raise Exception(" Except error from hit_promo2")
+        print("Error from hit_promo_telkomsel 2: ", e)
 
 
 def hit_promoTSEL3(name):
-    url = "https://www.telkomsel.com/promo"
-    chrome_options = chrome_option()
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.maximize_window()
-    driver.get(url)
-    time.sleep(3)
-
-    cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
-    driver.find_element(By.XPATH, cookes).click()
-    time.sleep(3)
-    scroll_25(driver)
-
-    promo3 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[3]/div/div/div[2]/div[2]'
-    driver.find_element(By.XPATH, promo3).click()
-    time.sleep(3)
-    scroll_25(driver)
-
-    result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
-    periode = format_periode(result_tnc)
-    scroll_25(driver)
-
-    click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
-    driver.find_element(By.XPATH, click2).click()
-    time.sleep(3)
-
-    url_tnc = driver.current_url
     try:
+        url = "https://www.telkomsel.com/promo"
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
+        driver.find_element(By.XPATH, cookes).click()
+        time.sleep(3)
+        scroll_25(driver)
+
+        promo3 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[3]/div/div/div[2]/div[2]'
+        driver.find_element(By.XPATH, promo3).click()
+        time.sleep(3)
+        scroll_25(driver)
+
+        result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
+        periode = format_periode(result_tnc)
+        scroll_25(driver)
+
+        click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
+        driver.find_element(By.XPATH, click2).click()
+        time.sleep(3)
+
+        url_tnc = driver.current_url
+
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "telkomsel",
@@ -267,38 +260,38 @@ def hit_promoTSEL3(name):
         print('Status Code:', response.status_code)
         print('Response:', response.json())
     except Exception as e:
-        print(e)
-        raise Exception(" Except error from hit_promo3")
+        print("Error from hit_promo_telkomsel 3: ", e)
 
 
 def hit_promoTSEL4(name):
-    url = "https://www.telkomsel.com/promo"
-    chrome_options = chrome_option()
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.maximize_window()
-    driver.get(url)
-    time.sleep(3)
-
-    cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
-    driver.find_element(By.XPATH, cookes).click()
-    time.sleep(3)
-    scroll_25(driver)
-
-    promo4 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[4]/div/div/div[2]/div[2]'
-    driver.find_element(By.XPATH, promo4).click()
-    time.sleep(3)
-    scroll_25(driver)
-
-    result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
-    periode = format_periode(result_tnc)
-    scroll_25(driver)
-
-    click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
-    driver.find_element(By.XPATH, click2).click()
-    time.sleep(3)
-
-    url_tnc = driver.current_url
     try:
+        url = "https://www.telkomsel.com/promo"
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
+        driver.find_element(By.XPATH, cookes).click()
+        time.sleep(3)
+        scroll_25(driver)
+
+        promo4 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[4]/div/div/div[2]/div[2]'
+        driver.find_element(By.XPATH, promo4).click()
+        time.sleep(3)
+        scroll_25(driver)
+
+        result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
+        periode = format_periode(result_tnc)
+        scroll_25(driver)
+
+        click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
+        driver.find_element(By.XPATH, click2).click()
+        time.sleep(3)
+
+        url_tnc = driver.current_url
+
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "telkomsel",
@@ -314,38 +307,38 @@ def hit_promoTSEL4(name):
         print('Status Code:', response.status_code)
         print('Response:', response.json())
     except Exception as e:
-        print(e)
-        raise Exception(" Except error from hit_promo4")
+        print("Error from hit_promo_telkomsel 4: ", e)
 
 
 def hit_promoTSEL5(name):
-    url = "https://www.telkomsel.com/promo"
-    chrome_options = chrome_option()
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.maximize_window()
-    driver.get(url)
-    time.sleep(3)
-
-    cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
-    driver.find_element(By.XPATH, cookes).click()
-    time.sleep(3)
-    scroll_25(driver)
-
-    promo5 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[5]/div/div/div[2]/div[2]'
-    driver.find_element(By.XPATH, promo5).click()
-    time.sleep(3)
-    scroll_25(driver)
-
-    result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
-    periode = format_periode(result_tnc)
-    scroll_25(driver)
-
-    click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
-    driver.find_element(By.XPATH, click2).click()
-    time.sleep(3)
-
-    url_tnc = driver.current_url
     try:
+        url = "https://www.telkomsel.com/promo"
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
+        driver.find_element(By.XPATH, cookes).click()
+        time.sleep(3)
+        scroll_25(driver)
+
+        promo5 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[5]/div/div/div[2]/div[2]'
+        driver.find_element(By.XPATH, promo5).click()
+        time.sleep(3)
+        scroll_25(driver)
+
+        result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
+        periode = format_periode(result_tnc)
+        scroll_25(driver)
+
+        click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
+        driver.find_element(By.XPATH, click2).click()
+        time.sleep(3)
+
+        url_tnc = driver.current_url
+
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "telkomsel",
@@ -361,38 +354,38 @@ def hit_promoTSEL5(name):
         print('Status Code:', response.status_code)
         print('Response:', response.json())
     except Exception as e:
-        print(e)
-        raise Exception(" Except error from hit_promo5")
+        print("Error from hit_promo_telkomsel 5: ", e)
 
 
 def hit_promoTSEL6(name):
-    url = "https://www.telkomsel.com/promo"
-    chrome_options = chrome_option()
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.maximize_window()
-    driver.get(url)
-    time.sleep(3)
-
-    cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
-    driver.find_element(By.XPATH, cookes).click()
-    time.sleep(3)
-    scroll_25(driver)
-
-    promo6 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[6]/div/div/div[2]/div[2]'
-    driver.find_element(By.XPATH, promo6).click()
-    time.sleep(3)
-    scroll_25(driver)
-
-    result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
-    periode = format_periode(result_tnc)
-    scroll_25(driver)
-
-    click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
-    driver.find_element(By.XPATH, click2).click()
-    time.sleep(3)
-
-    url_tnc = driver.current_url
     try:
+        url = "https://www.telkomsel.com/promo"
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        cookes = '//*[@id="cookiesSection"]/div/div/div/div/div[2]/button'
+        driver.find_element(By.XPATH, cookes).click()
+        time.sleep(3)
+        scroll_25(driver)
+
+        promo6 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[6]/div/div/div[2]/div[2]'
+        driver.find_element(By.XPATH, promo6).click()
+        time.sleep(3)
+        scroll_25(driver)
+
+        result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
+        periode = format_periode(result_tnc)
+        scroll_25(driver)
+
+        click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
+        driver.find_element(By.XPATH, click2).click()
+        time.sleep(3)
+
+        url_tnc = driver.current_url
+
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "telkomsel",
@@ -408,8 +401,7 @@ def hit_promoTSEL6(name):
         print('Status Code:', response.status_code)
         print('Response:', response.json())
     except Exception as e:
-        print(e)
-        raise Exception(" Except error from hit_promo6")
+        print("Error from hit_promo_telkomsel 6: ", e)
 
 
 def scroll_25(driver):
@@ -443,33 +435,33 @@ def generate_promo_axis():
 
 
 def hit_promoAXIS1():
-    url = 'https://www.axis.co.id/promo'
-    chrome_options = chrome_option()
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.maximize_window()
-    driver.get(url)
-    time.sleep(3)
-    check = driver.find_element(By.XPATH, '//*[@id="modal-package-access"]/div/div/button/i')
-    if check:
-        check.click()
-    driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.40, behavior: 'smooth'});")
-    time.sleep(3)
-
-    step1 = '/html/body/section[1]/div/div[3]/div/div[1]/a/div[1]/img'
-    driver.find_element(By.XPATH, step1).click()
-    time.sleep(3)
-
-    step2 = '/html/body/section[1]/div/div/div/div[1]/h1'
-    name = driver.find_element(By.XPATH, step2).text
-    time.sleep(3)
-
-    step3 = '/html/body/section[1]/div/div/div/div[2]/p[2]'
-    periode = driver.find_element(By.XPATH, step3).text
-    result_periode = periode_format_axis(periode)
-
-    url_tnc = driver.current_url
-
     try:
+        url = 'https://www.axis.co.id/promo'
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+        check = driver.find_element(By.XPATH, '//*[@id="modal-package-access"]/div/div/button/i')
+        if check:
+            check.click()
+        driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.40, behavior: 'smooth'});")
+        time.sleep(3)
+
+        step1 = '/html/body/section[1]/div/div[3]/div/div[1]/a/div[1]/img'
+        driver.find_element(By.XPATH, step1).click()
+        time.sleep(3)
+
+        step2 = '/html/body/section[1]/div/div/div/div[1]/h1'
+        name = driver.find_element(By.XPATH, step2).text
+        time.sleep(3)
+
+        step3 = '/html/body/section[1]/div/div/div/div[2]/p[2]'
+        periode = driver.find_element(By.XPATH, step3).text
+        result_periode = periode_format_axis(periode)
+
+        url_tnc = driver.current_url
+
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "axis",
@@ -485,41 +477,38 @@ def hit_promoAXIS1():
         print('Status Code:', response.status_code)
         print('Response:', response.json())
     except Exception as e:
-        print(e)
-        raise Exception(" Except error from hit_promoAXIS1")
-
-    hit_promoAXIS2()
-    driver.quit()
+        print("Error from hit_promo_axis 1: ", e)
 
 
 def hit_promoAXIS2():
-    url = 'https://www.axis.co.id/promo'
-    chrome_options = chrome_option()
-    driver = webdriver.Chrome(options=chrome_options)
-    driver.maximize_window()
-    driver.get(url)
-    time.sleep(3)
-    check = driver.find_element(By.XPATH, '//*[@id="modal-package-access"]/div/div/button/i')
-    if check:
-        check.click()
-    driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.40, behavior: 'smooth'});")
-    time.sleep(3)
-
-    step1 = '/html/body/section[1]/div/div[3]/div/div[2]/a/div[1]/img'
-    driver.find_element(By.XPATH, step1).click()
-    time.sleep(3)
-
-    step2 = '/html/body/section[1]/div/div/div/div[1]/h1'
-    name = driver.find_element(By.XPATH, step2).text
-    time.sleep(3)
-
-    step3 = '/html/body/section[1]/div/div/div/div[2]/p[2]'
-    periode = driver.find_element(By.XPATH, step3).text
-    print("periode  :", periode)
-    result_periode = periode_format_axis(periode)
-
-    url_tnc = driver.current_url
     try:
+        url = 'https://www.axis.co.id/promo'
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+        check = driver.find_element(By.XPATH, '//*[@id="modal-package-access"]/div/div/button/i')
+        if check:
+            check.click()
+        driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.40, behavior: 'smooth'});")
+        time.sleep(3)
+
+        step1 = '/html/body/section[1]/div/div[3]/div/div[2]/a/div[1]/img'
+        driver.find_element(By.XPATH, step1).click()
+        time.sleep(3)
+
+        step2 = '/html/body/section[1]/div/div/div/div[1]/h1'
+        name = driver.find_element(By.XPATH, step2).text
+        time.sleep(3)
+
+        step3 = '/html/body/section[1]/div/div/div/div[2]/p[2]'
+        periode = driver.find_element(By.XPATH, step3).text
+        print("periode  :", periode)
+        result_periode = periode_format_axis(periode)
+
+        url_tnc = driver.current_url
+
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "axis",
@@ -535,10 +524,7 @@ def hit_promoAXIS2():
         print('Status Code:', response.status_code)
         print('Response:', response.json())
     except Exception as e:
-        print(e)
-        raise Exception(" Except error from hit_promoAXIS2")
-
-    driver.quit()
+        print("Error from hit_promo_axis 2: ", e)
 
 
 def XL_core():
@@ -596,46 +582,46 @@ def generate_promo_indosat():
 
 
 def hit_promo_isat1():
-    url = "https://indosatooredoo.com/portal/id/pspromolanding"
-    # chrome_options = chrome_option()
-    driver = webdriver.Chrome()
-    driver.maximize_window()
-    driver.get(url)
-    time.sleep(3)
-
-    step1 = '/html/body/div[1]/section[2]/div/div/div[2]/div/section[1]/div[1]/h4'
-    name = driver.find_element(By.XPATH, step1).text
-    time.sleep(3)
-
-    step2 = '/html/body/div[1]/section[2]/div/div/div[2]/div/section[1]/div[2]/div/div/div[3]/a/span'
-    driver.find_element(By.XPATH, step2).click()
-    driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.50, behavior: 'smooth'});")
-    time.sleep(3)
-
-    url_tnc = driver.current_url
-
-    step3 = '/html/body/div[1]/div[4]/section[3]/div/div[2]/div/div/div/div[3]/div[1]/a'
-    driver.find_element(By.XPATH, step3).click()
-    time.sleep(3)
-
-    step4 = '/html/body/div[1]/div[4]/section[3]/div/div[2]/div/div/div/div[3]/div[2]/div/div'
-    periode = driver.find_element(By.XPATH, step4).text
-    time.sleep(3)
-
-    tanggal = re.search(r'Tanggal (\d+)', periode).group(1)
-    start_date = datetime.strptime(tanggal, '%d')
-    start_date = start_date.replace(year=2022, month=12)
-    end_date = start_date + timedelta(days=9)
-
-    json_data = {
-        "startDate": start_date.strftime('%Y-%m-%d'),
-        "endDate": end_date.strftime('%Y-%m-%d')
-    }
-
-    jadwal = json.dumps(json_data)
-    jadwal = json.loads(jadwal)
-
     try:
+        url = "https://indosatooredoo.com/portal/id/pspromolanding"
+        # chrome_options = chrome_option()
+        driver = webdriver.Chrome()
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        step1 = '/html/body/div[1]/section[2]/div/div/div[2]/div/section[1]/div[1]/h4'
+        name = driver.find_element(By.XPATH, step1).text
+        time.sleep(3)
+
+        step2 = '/html/body/div[1]/section[2]/div/div/div[2]/div/section[1]/div[2]/div/div/div[3]/a/span'
+        driver.find_element(By.XPATH, step2).click()
+        driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.50, behavior: 'smooth'});")
+        time.sleep(3)
+
+        url_tnc = driver.current_url
+
+        step3 = '/html/body/div[1]/div[4]/section[3]/div/div[2]/div/div/div/div[3]/div[1]/a'
+        driver.find_element(By.XPATH, step3).click()
+        time.sleep(3)
+
+        step4 = '/html/body/div[1]/div[4]/section[3]/div/div[2]/div/div/div/div[3]/div[2]/div/div'
+        periode = driver.find_element(By.XPATH, step4).text
+        time.sleep(3)
+
+        tanggal = re.search(r'Tanggal (\d+)', periode).group(1)
+        start_date = datetime.strptime(tanggal, '%d')
+        start_date = start_date.replace(year=2022, month=12)
+        end_date = start_date + timedelta(days=9)
+
+        json_data = {
+            "startDate": start_date.strftime('%Y-%m-%d'),
+            "endDate": end_date.strftime('%Y-%m-%d')
+        }
+
+        jadwal = json.dumps(json_data)
+        jadwal = json.loads(jadwal)
+
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "indosat",
@@ -651,65 +637,63 @@ def hit_promo_isat1():
         print('Status Code:', response.status_code)
         print('Response:', response.json())
     except Exception as e:
-        print(e)
-        raise Exception(" Except error from hit_promo_indosat_1")
-    driver.quit()
+        print("Error from hit_promo_indosat 1: ", e)
 
 
 def hit_promo_isat2():
-    url = "https://www.indosatooredoo.com/portal/id/pspromo_inboundroaming"
-    # chrome_options = chrome_option()
-    driver = webdriver.Chrome()
-    driver.maximize_window()
-    driver.get(url)
-    time.sleep(3)
-
-    step1 = '/html/body/div[1]/div[4]/div/div/div/h3'
-    name = driver.find_element(By.XPATH, step1).text
-    time.sleep(3)
-
-    driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.20, behavior: 'smooth'});")
-    time.sleep(3)
-    url_tnc = driver.current_url
-
-    step4 = '/html/body/div[1]/div[4]/div/div/div/p[2]'
-    periode = driver.find_element(By.XPATH, step4).text
-    time.sleep(3)
-
-    tanggal = re.findall(r'\d{1,2} \w+', periode)
-
-    bulan_dict = {
-        'Januari': 'January',
-        'Februari': 'February',
-        'Maret': 'March',
-        'April': 'April',
-        'Mei': 'May',
-        'Juni': 'June',
-        'Juli': 'July',
-        'Agustus': 'August',
-        'September': 'September',
-        'Oktober': 'October',
-        'November': 'November',
-        'Desember': 'December'
-    }
-    start_date_str = tanggal[0].split()
-    start_date_str[1] = bulan_dict[start_date_str[1]]
-    start_date_str.append('2021')
-    start_date = datetime.strptime(' '.join(start_date_str), '%d %B %Y')
-    end_date_str = tanggal[1].split()
-    end_date_str[1] = bulan_dict[end_date_str[1]]
-    end_date_str.append('2021')
-    end_date = datetime.strptime(' '.join(end_date_str), '%d %B %Y')
-
-    json_data = {
-        "startDate": start_date.strftime('%Y-%m-%d'),
-        "endDate": end_date.strftime('%Y-%m-%d')
-    }
-
-    jadwal = json.dumps(json_data)
-    jadwal = json.loads(jadwal)
-
     try:
+        url = "https://www.indosatooredoo.com/portal/id/pspromo_inboundroaming"
+        # chrome_options = chrome_option()
+        driver = webdriver.Chrome()
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        step1 = '/html/body/div[1]/div[4]/div/div/div/h3'
+        name = driver.find_element(By.XPATH, step1).text
+        time.sleep(3)
+
+        driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.20, behavior: 'smooth'});")
+        time.sleep(3)
+        url_tnc = driver.current_url
+
+        step4 = '/html/body/div[1]/div[4]/div/div/div/p[2]'
+        periode = driver.find_element(By.XPATH, step4).text
+        time.sleep(3)
+
+        tanggal = re.findall(r'\d{1,2} \w+', periode)
+
+        bulan_dict = {
+            'Januari': 'January',
+            'Februari': 'February',
+            'Maret': 'March',
+            'April': 'April',
+            'Mei': 'May',
+            'Juni': 'June',
+            'Juli': 'July',
+            'Agustus': 'August',
+            'September': 'September',
+            'Oktober': 'October',
+            'November': 'November',
+            'Desember': 'December'
+        }
+        start_date_str = tanggal[0].split()
+        start_date_str[1] = bulan_dict[start_date_str[1]]
+        start_date_str.append('2021')
+        start_date = datetime.strptime(' '.join(start_date_str), '%d %B %Y')
+        end_date_str = tanggal[1].split()
+        end_date_str[1] = bulan_dict[end_date_str[1]]
+        end_date_str.append('2021')
+        end_date = datetime.strptime(' '.join(end_date_str), '%d %B %Y')
+
+        json_data = {
+            "startDate": start_date.strftime('%Y-%m-%d'),
+            "endDate": end_date.strftime('%Y-%m-%d')
+        }
+
+        jadwal = json.dumps(json_data)
+        jadwal = json.loads(jadwal)
+
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "indosat",
@@ -725,9 +709,7 @@ def hit_promo_isat2():
         print('Status Code:', response.status_code)
         print('Response:', response.json())
     except Exception as e:
-        print(e)
-        raise Exception(" Except error from hit_promo_indosat_2")
-    driver.quit()
+        print("Error from hit_promo_indosat 2: ", e)
 
 
 if __name__ == '__main__':
