@@ -429,7 +429,7 @@ def get_month_number(month):
 
 def generate_promo_axis():
     hit_promoAXIS1()
-    hit_promoAXIS2()
+    # hit_promoAXIS2()
 
     messagebox.showinfo("Success", "Promo Axis has been generated!")
 
@@ -437,8 +437,8 @@ def generate_promo_axis():
 def hit_promoAXIS1():
     try:
         url = 'https://www.axis.co.id/promo'
-        chrome_options = chrome_option()
-        driver = webdriver.Chrome(options=chrome_options)
+        # chrome_options = chrome_option()
+        driver = webdriver.Chrome()
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -505,24 +505,23 @@ def hit_promoAXIS2():
         step3 = '/html/body/section[1]/div/div/div/div[2]/p[2]'
         periode = driver.find_element(By.XPATH, step3).text
         print("periode  :", periode)
-        result_periode = periode_format_axis(periode)
 
         url_tnc = driver.current_url
 
         url = 'https://ratepromo.vercel.app/promo'
-        payload = {
-            "provider": "axis",
-            "name": name,
-            "url": url_tnc,
-            "startDate": result_periode["startDate"],
-            "endDate": result_periode["endDate"],
-            "isActive": 1
-        }
+        # payload = {
+        #     "provider": "axis",
+        #     "name": name,
+        #     "url": url_tnc,
+        #     "startDate": result_periode["startDate"],
+        #     "endDate": result_periode["endDate"],
+        #     "isActive": 1
+        # }
 
-        response = requests.post(url, json=payload)
-        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
-        print('Status Code:', response.status_code)
-        print('Response:', response.json())
+        # response = requests.post(url, json=payload)
+        # requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        # print('Status Code:', response.status_code)
+        # print('Response:', response.json())
     except Exception as e:
         print("Error from hit_promo_axis 2: ", e)
 
