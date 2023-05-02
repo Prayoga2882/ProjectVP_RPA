@@ -1,4 +1,5 @@
 import json
+import re
 from tkinter import messagebox
 
 import trafilatura
@@ -26,6 +27,8 @@ def get_rate_via_pulsa():
         "company": "VIA PULSA",
         "rate": json_obj["rate"]
     }
+    payload["rate"] = payload["rate"][:-2]
+
     try:
         url = 'https://ratepromo.vercel.app/rate'
         response = requests.post(url, json=payload)
@@ -34,6 +37,8 @@ def get_rate_via_pulsa():
     except Exception as e:
         print(e)
         raise Exception(" Except error from rate via pulsa")
+
+    messagebox.showinfo("Success", "Success Generate Rate Via Pulsa")
 
 
 def get_rate_by_pulsa():
@@ -53,6 +58,10 @@ def get_rate_by_pulsa():
         "rate": json_obj["rate"]
     }
 
+    for i in range(len(payload['rate'])):
+        for key, value in payload['rate'][i].items():
+            payload['rate'][i][key] = float(value.replace('%', '')) / 100
+
     try:
         url = 'https://ratepromo.vercel.app/rate'
         response = requests.post(url, json=payload)
@@ -62,11 +71,13 @@ def get_rate_by_pulsa():
         print(e)
         raise Exception(" Except error from rate via pulsa")
 
+    messagebox.showinfo("Success", "Success Generate Rate By Pulsa")
+
 
 def get_rate_sukma_convert():
     url = 'https://www.sukmaconvert.com/'
-    chrome_options = chrome_option()
-    driver = webdriver.Chrome(options=chrome_options)
+    # chrome_options = chrome_option()
+    driver = webdriver.Chrome()
     driver.maximize_window()
     driver.get(url)
     time.sleep(3)
@@ -112,17 +123,26 @@ def get_rate_sukma_convert():
         for k, v in item.items():
             rate_dict["rate"].append({k: ' '.join(v[1:])})
 
-    json_str = json.dumps(rate_dict)
-    json_obj = json.loads(json_str)
-    payload = {
-        "company": "SUKMA CONVERT",
-        "rate": json_obj["rate"]
-    }
+    new_rate_list = []
+    for rate in rate_dict['rate']:
+        for k, v in rate.items():
+            k = k.replace('/', ' ')
+            for item in re.findall(r'\d+\w+-\d+\w+', v):
+                value = re.search(f'{item} (\S+)', v).group(1)
+                new_rate_list.append({f"{k} {item}": value})
+
+    result = {"company": rate_dict['company'], "rate": new_rate_list}
+    final = json.dumps(result)
+    final = json.loads(final)
+
+    for item in final["rate"]:
+        for key in item:
+            item[key] = float(item[key].strip("%")) / 100
 
     try:
         url = 'https://ratepromo.vercel.app/rate'
 
-        response = requests.post(url, json=payload)
+        response = requests.post(url, json=final)
         print('Status Code:', response.status_code)
         print('Response:', response.json())
     except Exception as e:
@@ -131,9 +151,10 @@ def get_rate_sukma_convert():
 
     driver.quit()
 
+    messagebox.showinfo("Proses Selesai", "Proses telah selesai.")
+
 
 if __name__ == '__main__':
     get_rate_via_pulsa()
-    get_rate_by_pulsa()
-    get_rate_sukma_convert()
-    messagebox.showinfo("Proses Selesai", "Proses telah selesai.")
+    # get_rate_by_pulsa()
+    # get_rate_sukma_convert()

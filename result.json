@@ -1,55 +1,38 @@
 {
+  "company": "SUKMA CONVERT",
   "rate": [
     {
-      "XL/Axis": [
-        "Convert Pulsa Xl & Axis",
-        "25ribu-99ribu",
-        "83%",
-        "100ribu-199ribu",
-        "84%",
-        "200ribu-990ribu",
-        "85%",
-        "Kelipatan 1 Jt",
-        "86%"
-      ]
+      "XL Axis 25ribu-99ribu": "83%"
     },
     {
-      "Indosat/Mentari": [
-        "Convert Pulsa Indosat & Mentari",
-        "25ribu-99ribu",
-        "80%",
-        "100ribu-999ribu",
-        "81%",
-        "1 Juta Up",
-        "82%",
-        "0"
-      ]
+      "XL Axis 100ribu-199ribu": "84%"
     },
     {
-      "Telkomsel": [
-        "Convert Pulsa Telkomsel",
-        "25ribu-99ribu",
-        "79%",
-        "100ribu-199ribu",
-        "80%",
-        "200ribu-990ribu",
-        "81%",
-        "999ribu up",
-        "82%"
-      ]
+      "XL Axis 200ribu-990ribu": "85%"
     },
     {
-      "Three": [
-        "Convert Pulsa Three",
-        "25ribu-99ribu",
-        "84%",
-        "100ribu-199ribu",
-        "85%",
-        "200ribu-990ribu",
-        "86%",
-        "1 Juta Up",
-        "86%"
-      ]
+      "Indosat Mentari 25ribu-99ribu": "81%"
+    },
+    {
+      "Indosat Mentari 100ribu-999ribu": "82%"
+    },
+    {
+      "Telkomsel 25ribu-99ribu": "79%"
+    },
+    {
+      "Telkomsel 100ribu-199ribu": "80%"
+    },
+    {
+      "Telkomsel 200ribu-990ribu": "81%"
+    },
+    {
+      "Three 25ribu-99ribu": "84%"
+    },
+    {
+      "Three 100ribu-199ribu": "85%"
+    },
+    {
+      "Three 200ribu-990ribu": "86%"
     }
   ]
 }
