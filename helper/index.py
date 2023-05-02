@@ -146,14 +146,14 @@ def hit_promoTSEL1(name):
     driver.find_element(By.XPATH, click2).click()
     time.sleep(3)
 
-    tnc = '//*[@id="accordionA4"]'
-    result_tnc = driver.find_element(By.XPATH, tnc).text
+    url_tnc = driver.current_url
+
     try:
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "telkomsel",
             "name": name[0],
-            "tnc": result_tnc,
+            "url": url_tnc,
             "startDate": periode["startDate"],
             "endDate": periode["endDate"],
             "isActive": 1
@@ -194,14 +194,13 @@ def hit_promoTSEL2(name):
     driver.find_element(By.XPATH, click2).click()
     time.sleep(3)
 
-    tnc = '//*[@id="accordionA4"]'
-    result_tnc = driver.find_element(By.XPATH, tnc).text
+    url_tnc = driver.current_url
     try:
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "telkomsel",
             "name": name[1],
-            "tnc": result_tnc,
+            "url": url_tnc,
             "startDate": periode["startDate"],
             "endDate": periode["endDate"],
             "isActive": 1
@@ -242,14 +241,13 @@ def hit_promoTSEL3(name):
     driver.find_element(By.XPATH, click2).click()
     time.sleep(3)
 
-    tnc = '//*[@id="accordionA4"]'
-    result_tnc = driver.find_element(By.XPATH, tnc).text
+    url_tnc = driver.current_url
     try:
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "telkomsel",
             "name": name[2],
-            "tnc": result_tnc,
+            "url": url_tnc,
             "startDate": periode["startDate"],
             "endDate": periode["endDate"],
             "isActive": 1
@@ -290,14 +288,13 @@ def hit_promoTSEL4(name):
     driver.find_element(By.XPATH, click2).click()
     time.sleep(3)
 
-    tnc = '//*[@id="accordionA4"]'
-    result_tnc = driver.find_element(By.XPATH, tnc).text
+    url_tnc = driver.current_url
     try:
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "telkomsel",
             "name": name[3],
-            "tnc": result_tnc,
+            "url": url_tnc,
             "startDate": periode["startDate"],
             "endDate": periode["endDate"],
             "isActive": 1
@@ -338,14 +335,13 @@ def hit_promoTSEL5(name):
     driver.find_element(By.XPATH, click2).click()
     time.sleep(3)
 
-    tnc = '//*[@id="accordionA4"]'
-    result_tnc = driver.find_element(By.XPATH, tnc).text
+    url_tnc = driver.current_url
     try:
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "telkomsel",
             "name": name[4],
-            "tnc": result_tnc,
+            "url": url_tnc,
             "startDate": periode["startDate"],
             "endDate": periode["endDate"],
             "isActive": 1
@@ -386,14 +382,13 @@ def hit_promoTSEL6(name):
     driver.find_element(By.XPATH, click2).click()
     time.sleep(3)
 
-    tnc = '//*[@id="accordionA4"]'
-    result_tnc = driver.find_element(By.XPATH, tnc).text
+    url_tnc = driver.current_url
     try:
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "telkomsel",
             "name": name[5],
-            "tnc": result_tnc,
+            "url": url_tnc,
             "startDate": periode["startDate"],
             "endDate": periode["endDate"],
             "isActive": 1
@@ -415,18 +410,18 @@ def scroll_25(driver):
 
 def get_month_number(month):
     months = {
-        'January': '01',
-        'February': '02',
-        'March': '03',
+        'Januari': '01',
+        'Februari': '02',
+        'Maret': '03',
         'April': '04',
-        'May': '05',
-        'June': '06',
-        'July': '07',
-        'August': '08',
+        'Mei': '05',
+        'Juni': '06',
+        'Juli': '07',
+        'Agustus': '08',
         'September': '09',
-        'October': '10',
+        'Oktober': '10',
         'November': '11',
-        'December': '12'
+        'Desember': '12'
     }
     return months[month]
 
@@ -463,15 +458,14 @@ def hit_promoAXIS1():
     periode = driver.find_element(By.XPATH, step3).text
     result_periode = periode_format_axis(periode)
 
-    step4 = '/html/body/section[3]/div/div/div[2]/ol'
-    tnc = driver.find_element(By.XPATH, step4).text
+    url_tnc = driver.current_url
 
     try:
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "axis",
             "name": name,
-            "tnc": tnc,
+            "url": url_tnc,
             "startDate": result_periode["startDate"],
             "endDate": result_periode["endDate"],
             "isActive": 1
@@ -485,6 +479,7 @@ def hit_promoAXIS1():
         print(e)
         raise Exception(" Except error from hit_promoAXIS1")
 
+    hit_promoAXIS2()
     driver.quit()
 
 
@@ -514,16 +509,13 @@ def hit_promoAXIS2():
     print("periode  :", periode)
     result_periode = periode_format_axis(periode)
 
-    # '/html/body/section[4]/div/div/div[2]/ul'
-    step4 = '/html/body/section[3]/div/div/div[2]/ol'
-    tnc = driver.find_element(By.XPATH, step4).text
-
+    url_tnc = driver.current_url
     try:
         url = 'https://ratepromo.vercel.app/promo'
         payload = {
             "provider": "axis",
             "name": name,
-            "tnc": tnc,
+            "url": url_tnc,
             "startDate": result_periode["startDate"],
             "endDate": result_periode["endDate"],
             "isActive": 1
