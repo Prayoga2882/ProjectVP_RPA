@@ -1,23 +1,20 @@
-{
-  'company': 'SULAP PULSA',
-  'rate': [
-    {
-      'Telkomsel 30.000 - 2.999.000': '0.73'
-    },
-    {
-      'Telkomsel 3.000.000 - Unlimited': '0.75'
-    },
-    {
-      'Three 30.000 - 3.000.000': '0.80'
-    },
-    {
-      'Three 3.001.000 - Unlimited': '0.82'
-    },
-    {
-      'XL 100.000 - Unlimited': '0.73'
-    },
-    {
-      'Axis 100.000 - Unlimited': '0.73'
-    }
-  ]
-}
+[
+  {
+    "XL/Axis": "0.70"
+  },
+  {
+    "Telkomsel": "0.73"
+  },
+  {
+    "Three/Tri": "0.77"
+  },
+  {
+    "Indosat": "0.72"
+  },
+  {
+    "Smartfren": "0.68"
+  },
+  {
+    "By.U": "0.00"
+  }
+]

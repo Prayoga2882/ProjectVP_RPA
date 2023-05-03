@@ -34,6 +34,9 @@ button.grid(row=3, column=0, padx=5, pady=5)
 button = tk.Button(root, text="Generate Rate Tentra Pulsa!", command=get_rate_tentra_pulsa)
 button.grid(row=3, column=1, padx=5, pady=5)
 
+button = tk.Button(root, text="Generate Rate Conversa!", command=get_rate_conversa)
+button.grid(row=3, column=2, padx=5, pady=5)
+
 result_label = tk.Label(root, text="")
 result_label.grid(row=4, columnspan=4)
 

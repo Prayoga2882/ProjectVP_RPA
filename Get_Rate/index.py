@@ -66,6 +66,102 @@ def get_rate_by_pulsa():
     messagebox.showinfo("Success", "Success Generate Rate By Pulsa")
 
 
+def get_rate_conversa():
+    try:
+        url = 'https://conversa.trikersdev.com/'
+        # chrome_options = chrome_option()
+        driver = webdriver.Chrome()
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.70, behavior: 'smooth'});")
+        time.sleep(3)
+
+        # ========= XL/Axis ========== #
+        rate_xl_axis = '/html/body/div[5]/div[2]/div[2]/div[2]/div/div[1]/div'
+        rate_xl_axis = driver.find_element(By.XPATH, rate_xl_axis).text.split("\n")
+        time.sleep(3)
+
+        rate_xl_axis[1] = rate_xl_axis[1].replace('%', '')
+        del rate_xl_axis[2:]
+
+        # ========= TELKOMSEL ========== #
+        rate_tsel = '/html/body/div[5]/div[2]/div[2]/div[2]/div/div[2]/div'
+        rate_tsel = driver.find_element(By.XPATH, rate_tsel).text.split("\n")
+        time.sleep(3)
+
+        rate_tsel[1] = rate_tsel[1].replace('%', '')
+        del rate_tsel[2:]
+
+        # ========= Three ========== #
+        rate_three = '/html/body/div[5]/div[2]/div[2]/div[2]/div/div[3]/div'
+        rate_three = driver.find_element(By.XPATH, rate_three).text.split("\n")
+        time.sleep(3)
+
+        rate_three[1] = rate_three[1].replace('%', '')
+        del rate_three[2:]
+
+        # ========= Indosat ========== #
+        rate_indosat = '/html/body/div[5]/div[2]/div[2]/div[2]/div/div[4]/div'
+        rate_indosat = driver.find_element(By.XPATH, rate_indosat).text.split("\n")
+        time.sleep(3)
+
+        rate_indosat[1] = rate_indosat[1].replace('%', '')
+        del rate_indosat[2:]
+
+        # ========= Smartfren ========== #
+        rate_smartfren = '/html/body/div[5]/div[2]/div[2]/div[2]/div/div[5]/div'
+        rate_smartfren = driver.find_element(By.XPATH, rate_smartfren).text.split("\n")
+        time.sleep(3)
+
+        rate_smartfren[1] = rate_smartfren[1].replace('%', '')
+        del rate_smartfren[2:]
+
+        # ========= By.U ========== #
+        rate_byu = '/html/body/div[5]/div[2]/div[2]/div[2]/div/div[6]/div'
+        rate_byu = driver.find_element(By.XPATH, rate_byu).text.split("\n")
+        time.sleep(3)
+
+        rate_byu[1] = rate_byu[1].replace('%', '')
+        del rate_byu[2:]
+
+        result = {
+            'company': 'CONVERSA',
+            'rate': [
+                {
+                    rate_xl_axis[0]: "{:.2f}".format(float(rate_xl_axis[1]) / 100)
+                },
+                {
+                    rate_tsel[0]: "{:.2f}".format(float(rate_tsel[1]) / 100)
+                },
+                {
+                    rate_three[0]: "{:.2f}".format(float(rate_three[1]) / 100)
+                },
+                {
+                    rate_indosat[0]: "{:.2f}".format(float(rate_indosat[1]) / 100)
+                },
+                {
+                    rate_smartfren[0]: "{:.2f}".format(float(rate_smartfren[1]) / 100)
+                },
+                {
+                    rate_byu[0]: "{:.2f}".format(float(rate_byu[1]) / 100)
+                }
+            ]
+        }
+
+        result = json.dumps(result)
+        payload = json.loads(result)
+
+        url = 'https://ratepromo.vercel.app/rate'
+        response = requests.post(url, json=payload)
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+
+    except Exception as e:
+        print("Except error from rate conversa", e)
+
+
 def get_rate_tentra_pulsa():
     try:
         url = 'https://tetrapulsa.com/'
@@ -361,4 +457,5 @@ if __name__ == '__main__':
     # get_rate_sukma_convert()
     # get_rate_zahra_convert()
     # get_rate_cv_convert()
-    get_rate_tentra_pulsa()
+    # get_rate_tentra_pulsa()
+    get_rate_conversa()
