@@ -1,65 +1,23 @@
 {
-  'company': 'ZAHRA CONVERT',
+  'company': 'SULAP PULSA',
   'rate': [
     {
-      'Telkomsel 30rb s/d 49rb': '0.80'
+      'Telkomsel 30.000 - 2.999.000': '0.73'
     },
     {
-      'Telkomsel 50rb s/d 249rb': '0.80'
+      'Telkomsel 3.000.000 - Unlimited': '0.75'
     },
     {
-      'Telkomsel 250rb s/d 499rb': '0.80'
+      'Three 30.000 - 3.000.000': '0.80'
     },
     {
-      'Telkomsel 500rb s/d 749rb': '0.80'
+      'Three 3.001.000 - Unlimited': '0.82'
     },
     {
-      'Telkomsel 750rb s/d 1jt': '0.80'
+      'XL 100.000 - Unlimited': '0.73'
     },
     {
-      'TRI 30rb s/d 49rb': '0.85'
-    },
-    {
-      'TRI 50rb s/d 249rb': '0.85'
-    },
-    {
-      'TRI 250rb s/d 499rb': '0.85'
-    },
-    {
-      'TRI 500rb s/d 749rb': '0.85'
-    },
-    {
-      'TRI 750rb s/d 1jt': '0.85'
-    },
-    {
-      'Indosat 30rb s/d 49rb': '0.80'
-    },
-    {
-      'Indosat 50rb s/d 249rb': '0.80'
-    },
-    {
-      'Indosat 250rb s/d 499rb': '0.80'
-    },
-    {
-      'Indosat 500rb s/d 749rb': '0.80'
-    },
-    {
-      'Indosat 750rb s/d 1jt': '0.80'
-    },
-    {
-      'XL/Axis 30rb s/d 49rb': '0.80'
-    },
-    {
-      'XL/Axis 50rb s/d 249rb': '0.80'
-    },
-    {
-      'XL/Axis 250rb s/d 499rb': '0.80'
-    },
-    {
-      'XL/Axis 500rb s/d 749rb': '0.80'
-    },
-    {
-      'XL/Axis 750rb s/d 1jt': '0.80'
+      'Axis 100.000 - Unlimited': '0.73'
     }
   ]
 }

@@ -66,6 +66,127 @@ def get_rate_by_pulsa():
     messagebox.showinfo("Success", "Success Generate Rate By Pulsa")
 
 
+def get_rate_tentra_pulsa():
+    try:
+        url = 'https://tetrapulsa.com/'
+        # chrome_options = chrome_option()
+        driver = webdriver.Chrome()
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.25, behavior: 'smooth'});")
+        time.sleep(3)
+
+        # ========= TELKOMSEL ========== #
+        rate_tsel = '/html/body/div[1]/main/div/section[2]/div[2]/div/div[2]/div'
+        rate_tsel = driver.find_element(By.XPATH, rate_tsel).text.split("\n")
+        time.sleep(3)
+        rate_tsel.remove('TUKAR PULSA')
+        rate_tsel.remove('HUBUNGI KAMI')
+        rate_tsel.remove('Telkomsel')
+
+        cleaned_data = [d.strip().replace('\u2013', '-').replace(',', '.') for d in rate_tsel]
+
+        formatted_data = {'company': 'TENTRA PULSA', 'rate': []}
+
+        for i in range(0, len(cleaned_data), 2):
+            if i + 1 < len(cleaned_data):
+                rate_tsel = {f'Telkomsel {cleaned_data[i]}': cleaned_data[i + 1]}
+                formatted_data['rate'].append(rate_tsel)
+
+        # ========= Three ========== #
+        rate_three = '/html/body/div[1]/main/div/section[2]/div[2]/div/div[3]/div'
+        rate_three = driver.find_element(By.XPATH, rate_three).text.split("\n")
+        time.sleep(3)
+        rate_three.remove('TUKAR PULSA')
+        rate_three.remove('HUBUNGI KAMI')
+        rate_three.remove('Three')
+
+        cleaned_data = [d.strip().replace('\u2013', '-').replace(',', '.') for d in rate_three]
+
+        for i in range(0, len(cleaned_data), 2):
+            if i + 1 < len(cleaned_data):
+                rate_three = {f'Three {cleaned_data[i]}': cleaned_data[i + 1]}
+                formatted_data['rate'].append(rate_three)
+
+        # ========= XL ========== #
+        ratexl = '/html/body/div[1]/main/div/section[2]/div[2]/div/div[4]/div'
+        ratexl = driver.find_element(By.XPATH, ratexl).text.split("\n")
+        time.sleep(3)
+        ratexl.remove('TUKAR PULSA')
+        ratexl.remove('HUBUNGI KAMI')
+        ratexl.remove('XL')
+
+        cleaned_data = [d.strip().replace('\u2013', '-').replace(',', '.') for d in ratexl]
+
+        for i in range(0, len(cleaned_data), 2):
+            if i + 1 < len(cleaned_data):
+                ratexl = {f'XL {cleaned_data[i]}': cleaned_data[i + 1]}
+                formatted_data['rate'].append(ratexl)
+
+        # ========= Axis ========== #
+        rateaxis = '/html/body/div[1]/main/div/section[2]/div[2]/div/div[5]/div'
+        rateaxis = driver.find_element(By.XPATH, rateaxis).text.split("\n")
+        time.sleep(3)
+        rateaxis.remove('TUKAR PULSA')
+        rateaxis.remove('HUBUNGI KAMI')
+        rateaxis.remove('Axis')
+
+        cleaned_data = [d.strip().replace('\u2013', '-').replace(',', '.') for d in rateaxis]
+
+        for i in range(0, len(cleaned_data), 2):
+            if i + 1 < len(cleaned_data):
+                rateaxis = {f'Axis {cleaned_data[i]}': cleaned_data[i + 1]}
+                formatted_data['rate'].append(rateaxis)
+
+        result = json.dumps(formatted_data)
+        payload = json.loads(result)
+
+        url = 'https://ratepromo.vercel.app/rate'
+        response = requests.post(url, json=payload)
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+
+    except Exception as e:
+        print("Except error from rate conversa", e)
+
+
+def get_rate_cv_convert():
+    try:
+        url = 'https://www.cvpulsa.id/'
+        # chrome_options = chrome_option()
+        driver = webdriver.Chrome()
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        rate = "/html/body/div[3]/div/div[3]/div/div/div"
+        rate = driver.find_element(By.XPATH, rate).text.split("\n")
+        time.sleep(3)
+
+        result = {'company': 'CV PULSA', "rate": []}
+
+        for i in range(len(rate)):
+            if i == 0:
+                result['rate'].append({'Telkomsel': rate[i]})
+            elif i == 1:
+                result['rate'].append({'XL': rate[i]})
+            elif i == 2:
+                result['rate'].append({'Indosat': rate[i]})
+            elif i == 3:
+                result['rate'].append({'Tri': rate[i]})
+
+        result = json.dumps(result)
+        payload = json.loads(result)
+        url = 'https://ratepromo.vercel.app/rate'
+        response = requests.post(url, json=payload)
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print("Except error from zona convert", e)
+
+
 def get_rate_zahra_convert():
     try:
         url = 'https://www.zahraconvert.com/'
@@ -238,4 +359,6 @@ if __name__ == '__main__':
     # get_rate_via_pulsa()
     # get_rate_by_pulsa()
     # get_rate_sukma_convert()
-    get_rate_zahra_convert()
+    # get_rate_zahra_convert()
+    # get_rate_cv_convert()
+    get_rate_tentra_pulsa()
