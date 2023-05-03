@@ -73,6 +73,114 @@ def rate_Indosat(soup, rate_dict):
     return result
 
 
+def rate_telkomsel_zahra_convert(driver):
+    try:
+        rate = "/html/body/div[1]/div/div/div[3]/div/div/div/div/div[2]/div/div/div[1]"
+        rate = driver.find_element(By.XPATH, rate).text
+        time.sleep(3)
+
+        rate_dict = {"rate": []}
+        rate_dict["rate"].append({"rate": rate})
+
+        new_data = {'company': 'ZAHRA CONVERT', 'rate': []}
+
+        for item in rate_dict['rate']:
+            rate_str = item['rate'].split('\n')
+            company = rate_str.pop(0)
+
+            for i in range(0, len(rate_str), 2):
+                rate_item = {}
+                rate_item[company + ' ' + rate_str[i]] = rate_str[i + 1]
+                new_data['rate'].append(rate_item)
+
+        new_data = json.dumps(new_data)
+        new_data = json.loads(new_data)
+        return new_data['rate']
+    except Exception as e:
+        print("Error from rate_telkomsel_zahra_convert: ", e)
+
+
+def rate_tri_zahra_convert(driver):
+    try:
+        rate = "/html/body/div[1]/div/div/div[3]/div/div/div/div/div[2]/div/div/div[2]"
+        rate = driver.find_element(By.XPATH, rate).text
+        time.sleep(3)
+
+        rate_dict = {"rate": []}
+        rate_dict["rate"].append({"rate": rate})
+
+        new_data = {'company': 'ZAHRA CONVERT', 'rate': []}
+
+        for item in rate_dict['rate']:
+            rate_str = item['rate'].split('\n')
+            company = rate_str.pop(0)
+
+            for i in range(0, len(rate_str), 2):
+                rate_item = {}
+                rate_item[company + ' ' + rate_str[i]] = rate_str[i + 1]
+                new_data['rate'].append(rate_item)
+
+        new_data = json.dumps(new_data)
+        print("rate_tri_zahra_convert: ", new_data)
+        return new_data
+    except Exception as e:
+        print("Error from rate_tri_zahra_convert: ", e)
+
+
+def rate_indosat_zahra_convert(driver):
+    try:
+        rate = "/html/body/div[1]/div/div/div[3]/div/div/div/div/div[2]/div/div/div[3]"
+        rate = driver.find_element(By.XPATH, rate).text
+        time.sleep(3)
+
+        rate_dict = {"rate": []}
+        rate_dict["rate"].append({"rate": rate})
+
+        new_data = {'company': 'ZAHRA CONVERT', 'rate': []}
+
+        for item in rate_dict['rate']:
+            rate_str = item['rate'].split('\n')
+            company = rate_str.pop(0)
+
+            for i in range(0, len(rate_str), 2):
+                rate_item = {}
+                rate_item[company + ' ' + rate_str[i]] = rate_str[i + 1]
+                new_data['rate'].append(rate_item)
+
+        new_data = json.dumps(new_data)
+        print("rate_indosat_zahra_convert: ", new_data)
+        return new_data
+    except Exception as e:
+        print("Error from rate_indosat_zahra_convert: ", e)
+
+
+def rate_xl_axis_zahra_convert(driver):
+    try:
+        rate = "/html/body/div[1]/div/div/div[3]/div/div/div/div/div[2]/div/div/div[4]"
+        rate = driver.find_element(By.XPATH, rate).text
+        time.sleep(3)
+
+        rate_dict = {"rate": []}
+        rate_dict["rate"].append({"rate": rate})
+
+        new_data = {'company': 'ZAHRA CONVERT', 'rate': []}
+
+        for item in rate_dict['rate']:
+            rate_str = item['rate'].split('\n')
+            company = rate_str.pop(0)
+
+            for i in range(0, len(rate_str), 2):
+                rate_item = {}
+                rate_item[company + ' ' + rate_str[i]] = rate_str[i + 1]
+                new_data['rate'].append(rate_item)
+
+        new_data = json.dumps(new_data)
+        print("rate_xl_axis_zahra_convert: ", new_data)
+        return new_data
+    except Exception as e:
+        print("Error from rate_xl_axis_zahra_convert: ", e)
+
+
 def chrome_option():
     chrome_options = Options()
     chrome_options.add_argument("--headless")  # Menambahkan opsi headless

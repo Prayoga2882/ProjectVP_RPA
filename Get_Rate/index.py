@@ -1,11 +1,5 @@
-import json
-import re
-from tkinter import messagebox
-
-import trafilatura
-from bs4 import BeautifulSoup
 from helper.index import *
-from xpath_conf import sukma_convert
+from conf.xpath_conf import sukma_convert
 
 
 def get_rate_via_pulsa():
@@ -70,6 +64,99 @@ def get_rate_by_pulsa():
         print("Except error from rate by pulsa", e)
 
     messagebox.showinfo("Success", "Success Generate Rate By Pulsa")
+
+
+def get_rate_zahra_convert():
+    try:
+        url = 'https://www.zahraconvert.com/'
+        # chrome_options = chrome_option()
+        driver = webdriver.Chrome()
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.3, behavior: 'smooth'});")
+        time.sleep(3)
+
+        result = {'company': 'ZAHRA CONVERT', "rate": []}
+
+        # ========================================================================================== #
+        rate = "/html/body/div[1]/div/div/div[3]/div/div/div/div/div[2]/div/div/div[1]"
+        rate = driver.find_element(By.XPATH, rate).text
+        time.sleep(3)
+
+        rate_dict = {"rate": []}
+        rate_dict["rate"].append({"rate": rate})
+
+        for item in rate_dict['rate']:
+            rate_str = item['rate'].split('\n')
+            company = rate_str.pop(0)
+
+            for i in range(0, len(rate_str), 2):
+                rate_item = {}
+                rate_item[company + ' ' + rate_str[i]] = rate_str[i + 1]
+                result['rate'].append(rate_item)
+
+        # ========================================================================================== #
+        rate_tri = "/html/body/div[1]/div/div/div[3]/div/div/div/div/div[2]/div/div/div[2]"
+        rate_tri = driver.find_element(By.XPATH, rate_tri).text
+        time.sleep(3)
+
+        rate_dict = {"rate": []}
+        rate_dict["rate"].append({"rate": rate_tri})
+
+        for item in rate_dict['rate']:
+            rate_str = item['rate'].split('\n')
+            company = rate_str.pop(0)
+
+            for i in range(0, len(rate_str), 2):
+                rate_item = {}
+                rate_item[company + ' ' + rate_str[i]] = rate_str[i + 1]
+                result['rate'].append(rate_item)
+
+        # ========================================================================================== #
+        rate_isat = "/html/body/div[1]/div/div/div[3]/div/div/div/div/div[2]/div/div/div[3]"
+        rate_isat = driver.find_element(By.XPATH, rate_isat).text
+        time.sleep(3)
+
+        rate_dict = {"rate": []}
+        rate_dict["rate"].append({"rate": rate_isat})
+
+        for item in rate_dict['rate']:
+            rate_str = item['rate'].split('\n')
+            company = rate_str.pop(0)
+
+            for i in range(0, len(rate_str), 2):
+                rate_item = {}
+                rate_item[company + ' ' + rate_str[i]] = rate_str[i + 1]
+                result['rate'].append(rate_item)
+
+        # ========================================================================================== #
+        rate_xl_axis = "/html/body/div[1]/div/div/div[3]/div/div/div/div/div[2]/div/div/div[4]"
+        rate_xl_axis = driver.find_element(By.XPATH, rate_xl_axis).text
+        time.sleep(3)
+
+        rate_dict = {"rate": []}
+        rate_dict["rate"].append({"rate": rate_xl_axis})
+
+        for item in rate_dict['rate']:
+            rate_str = item['rate'].split('\n')
+            company = rate_str.pop(0)
+
+            for i in range(0, len(rate_str), 2):
+                rate_item = {}
+                rate_item[company + ' ' + rate_str[i]] = rate_str[i + 1]
+                result['rate'].append(rate_item)
+
+        payload = json.dumps(result)
+        payload = json.loads(payload)
+        url = 'https://ratepromo.vercel.app/rate'
+        response = requests.post(url, json=payload)
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+
+    except Exception as e:
+        print("Except error from rate zahra convert :", e)
 
 
 def get_rate_sukma_convert():
@@ -148,6 +235,7 @@ def get_rate_sukma_convert():
 
 
 if __name__ == '__main__':
-    get_rate_via_pulsa()
+    # get_rate_via_pulsa()
     # get_rate_by_pulsa()
     # get_rate_sukma_convert()
+    get_rate_zahra_convert()

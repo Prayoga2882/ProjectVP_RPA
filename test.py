@@ -1,18 +1,22 @@
-import feedparser
+import re
+import requests
+import json
 
 
-def rss():
-    # membaca RSS feed
-    rss_url = 'https://rss.nytimes.com/services/xml/rss/nyt/World.xml'
-    feed = feedparser.parse(rss_url)
+def regex_search():
+    with open("./conf/search_words.json", "r") as f:
+        search_words = json.load(f)
 
-    # menampilkan informasi terbaru dari feed
-    for entry in feed.entries:
-        print("title :", entry.title)
-        print("link", entry.link)
-        print("publised", entry.published)
-        print('\n')
+    url = "https://www.indosatooredoo.com/portal/id/pssensasi"
+    response = requests.get(url)
+
+    text = response.text.lower()
+
+    search_regex = re.compile("|".join(search_words), re.IGNORECASE)
+    result = search_regex.findall(text)
+
+    print(result)
 
 
 if __name__ == '__main__':
-    rss()
+    regex_search()

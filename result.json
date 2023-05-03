@@ -1,38 +1,65 @@
 {
-  "company": "SUKMA CONVERT",
-  "rate": [
+  'company': 'ZAHRA CONVERT',
+  'rate': [
     {
-      "XL Axis 25ribu-99ribu": "83%"
+      'Telkomsel 30rb s/d 49rb': '0.80'
     },
     {
-      "XL Axis 100ribu-199ribu": "84%"
+      'Telkomsel 50rb s/d 249rb': '0.80'
     },
     {
-      "XL Axis 200ribu-990ribu": "85%"
+      'Telkomsel 250rb s/d 499rb': '0.80'
     },
     {
-      "Indosat Mentari 25ribu-99ribu": "81%"
+      'Telkomsel 500rb s/d 749rb': '0.80'
     },
     {
-      "Indosat Mentari 100ribu-999ribu": "82%"
+      'Telkomsel 750rb s/d 1jt': '0.80'
     },
     {
-      "Telkomsel 25ribu-99ribu": "79%"
+      'TRI 30rb s/d 49rb': '0.85'
     },
     {
-      "Telkomsel 100ribu-199ribu": "80%"
+      'TRI 50rb s/d 249rb': '0.85'
     },
     {
-      "Telkomsel 200ribu-990ribu": "81%"
+      'TRI 250rb s/d 499rb': '0.85'
     },
     {
-      "Three 25ribu-99ribu": "84%"
+      'TRI 500rb s/d 749rb': '0.85'
     },
     {
-      "Three 100ribu-199ribu": "85%"
+      'TRI 750rb s/d 1jt': '0.85'
     },
     {
-      "Three 200ribu-990ribu": "86%"
+      'Indosat 30rb s/d 49rb': '0.80'
+    },
+    {
+      'Indosat 50rb s/d 249rb': '0.80'
+    },
+    {
+      'Indosat 250rb s/d 499rb': '0.80'
+    },
+    {
+      'Indosat 500rb s/d 749rb': '0.80'
+    },
+    {
+      'Indosat 750rb s/d 1jt': '0.80'
+    },
+    {
+      'XL/Axis 30rb s/d 49rb': '0.80'
+    },
+    {
+      'XL/Axis 50rb s/d 249rb': '0.80'
+    },
+    {
+      'XL/Axis 250rb s/d 499rb': '0.80'
+    },
+    {
+      'XL/Axis 500rb s/d 749rb': '0.80'
+    },
+    {
+      'XL/Axis 750rb s/d 1jt': '0.80'
     }
   ]
 }
