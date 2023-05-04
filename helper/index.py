@@ -540,9 +540,17 @@ def get_promo_shopee():
     driver.get(url)
     time.sleep(3)
 
+    driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.10, behavior: 'smooth'});")
+
     hit_promo_shopee1(driver)
     hit_promo_shopee2(driver)
     hit_promo_shopee3(driver)
+    hit_promo_shopee4(driver)
+    hit_promo_shopee5(driver)
+    hit_promo_shopee6(driver)
+    hit_promo_shopee7(driver)
+    hit_promo_shopee8(driver)
+    hit_promo_shopee9(driver)
     messagebox.showinfo("Selesai", "Generate Promo Shopee Selesai")
 
 
@@ -619,6 +627,156 @@ def hit_promo_shopee3(driver):
         print('Response:', response.json())
     except Exception as e:
         print("Error from hit_promo_shopee 3: ", e)
+
+
+def hit_promo_shopee4(driver):
+    try:
+        promo = '/html/body/div[1]/div/div[2]/div/div/div[2]/div/div/div[4]'
+        details = clean_promo_shopee(driver, promo)
+
+        url_tnc = driver.current_url
+
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "provider": "Shopee",
+            "name": details["name"],
+            "url": url_tnc,
+            "startDate": datetime.now().strftime('%Y-%m-%d'),
+            "endDate": details["periode"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print("Error from hit_promo_shopee 4: ", e)
+
+
+def hit_promo_shopee5(driver):
+    try:
+        promo = '/html/body/div[1]/div/div[2]/div/div/div[2]/div/div/div[5]'
+        details = clean_promo_shopee(driver, promo)
+
+        url_tnc = driver.current_url
+
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "provider": "Shopee",
+            "name": details["name"],
+            "url": url_tnc,
+            "startDate": datetime.now().strftime('%Y-%m-%d'),
+            "endDate": details["periode"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print("Error from hit_promo_shopee 5: ", e)
+
+
+def hit_promo_shopee6(driver):
+    try:
+        promo = '/html/body/div[1]/div/div[2]/div/div/div[2]/div/div/div[6]'
+        details = clean_promo_shopee(driver, promo)
+
+        url_tnc = driver.current_url
+
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "provider": "Shopee",
+            "name": details["name"],
+            "url": url_tnc,
+            "startDate": datetime.now().strftime('%Y-%m-%d'),
+            "endDate": details["periode"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print("Error from hit_promo_shopee 6: ", e)
+
+
+def hit_promo_shopee7(driver):
+    try:
+        promo = '/html/body/div[1]/div/div[2]/div/div/div[2]/div/div/div[7]'
+        details = clean_promo_shopee(driver, promo)
+
+        url_tnc = driver.current_url
+
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "provider": "Shopee",
+            "name": details["name"],
+            "url": url_tnc,
+            "startDate": datetime.now().strftime('%Y-%m-%d'),
+            "endDate": details["periode"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print("Error from hit_promo_shopee 7: ", e)
+
+
+def hit_promo_shopee8(driver):
+    try:
+        promo = '/html/body/div[1]/div/div[2]/div/div/div[2]/div/div/div[8]'
+        details = clean_promo_shopee(driver, promo)
+
+        url_tnc = driver.current_url
+
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "provider": "Shopee",
+            "name": details["name"],
+            "url": url_tnc,
+            "startDate": datetime.now().strftime('%Y-%m-%d'),
+            "endDate": details["periode"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print("Error from hit_promo_shopee 8: ", e)
+
+
+def hit_promo_shopee9(driver):
+    try:
+        promo = '/html/body/div[1]/div/div[2]/div/div/div[2]/div/div/div[9]'
+        details = clean_promo_shopee(driver, promo)
+
+        url_tnc = driver.current_url
+
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "provider": "Shopee",
+            "name": details["name"],
+            "url": url_tnc,
+            "startDate": datetime.now().strftime('%Y-%m-%d'),
+            "endDate": details["periode"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print("Error from hit_promo_shopee 9: ", e)
 
 
 def generate_promo_axis():
