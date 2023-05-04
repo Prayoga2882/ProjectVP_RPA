@@ -1,38 +1,4 @@
 {
-  'company': 'SUKMA CONVERT',
-  'rate': [
-    {
-      'XL Axis 25ribu-99ribu': 0.83
-    },
-    {
-      'XL Axis 100ribu-199ribu': 0.84
-    },
-    {
-      'XL Axis 200ribu-990ribu': 0.85
-    },
-    {
-      'Indosat Mentari 25ribu-99ribu': 0.81
-    },
-    {
-      'Indosat Mentari 100ribu-999ribu': 0.82
-    },
-    {
-      'Telkomsel 25ribu-99ribu': 0.79
-    },
-    {
-      'Telkomsel 100ribu-199ribu': 0.8
-    },
-    {
-      'Telkomsel 200ribu-990ribu': 0.81
-    },
-    {
-      'Three 25ribu-99ribu': 0.84
-    },
-    {
-      'Three 100ribu-199ribu': 0.85
-    },
-    {
-      'Three 200ribu-990ribu': 0.86
-    }
-  ]
+  'name': 'Shopee 5.5 Bagi-Bagi Cuan | Nonton Video Total Hadiah 2M, Gratis Ongkir s/d 20RB Tanpa Min. Belanja & Flash Sale RP99 | 25 Apr-6 Mei 2023',
+  'periode': '2023-05-04'
 }

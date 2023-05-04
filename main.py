@@ -16,6 +16,9 @@ button.grid(row=1, column=1, padx=5, pady=5)
 button = tk.Button(root, text="Generate Promo Axis!", command=generate_promo_axis, activebackground='yellow')
 button.grid(row=1, column=2, padx=5, pady=5)
 
+button = tk.Button(root, text="Generate Promo Shopee!", command=get_promo_shopee, activebackground='yellow')
+button.grid(row=1, column=4, padx=5, pady=5)
+
 button = tk.Button(root, text="Generate Rate Via Pulsa!", command=get_rate_via_pulsa, activebackground='yellow')
 button.grid(row=2, column=0, padx=5, pady=5)
 
