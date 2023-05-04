@@ -4,25 +4,30 @@ from conf.xpath_conf import sukma_convert
 
 def get_rate_via_pulsa():
     try:
-        downloaded = trafilatura.fetch_url('https://www.viapulsa.com/')
-        soup = BeautifulSoup(downloaded, 'html.parser')
-        element_rate = soup.find_all('p', class_='elementor-heading-title elementor-size-default')
+        url = 'https://www.viapulsa.com/'
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
 
-        rate_dict = {"rate": []}
+        driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.25, behavior: 'smooth'});")
+        time.sleep(3)
 
-        for element in element_rate:
-            rate_name = element.get_text(strip=True)
-            rate_value = element.find_next('p').get_text(strip=True)
-            rate_dict["rate"].append({rate_name: rate_value})
+        rate = '/html/body/div[2]/main/div/section[3]/div/div/div/section'
+        rate = driver.find_element(By.XPATH, rate).text
+        rate = rate.split('\n')
 
-        json_cleaner(rate_dict)
-        json_str = json.dumps(rate_dict)
-        json_obj = json.loads(json_str)
-        payload = {
+        result = {
             "company": "VIA PULSA",
-            "rate": json_obj["rate"]
+            "rate": []
         }
-        payload["rate"] = payload["rate"][:-2]
+
+        for i in range(0, len(rate), 2):
+            result["rate"].append({rate[i]: rate[i + 1]})
+
+        data = json.dumps(result)
+        payload = json.loads(data)
 
         url = 'https://ratepromo.vercel.app/rate'
         response = requests.post(url, json=payload)
@@ -387,8 +392,8 @@ def get_rate_zahra_convert():
 def get_rate_sukma_convert():
     try:
         url = 'https://www.sukmaconvert.com/'
-        chrome_options = chrome_option()
-        driver = webdriver.Chrome(options=chrome_options)
+        # chrome_options = chrome_option()
+        driver = webdriver.Chrome()
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -450,6 +455,9 @@ def get_rate_sukma_convert():
             for key in item:
                 item[key] = float(item[key].strip("%")) / 100
 
+        if not final:
+            print("No data from sukma convert")
+
         url = 'https://ratepromo.vercel.app/rate'
 
         response = requests.post(url, json=final)
@@ -464,8 +472,8 @@ def get_rate_sukma_convert():
 if __name__ == '__main__':
     # get_rate_via_pulsa()
     # get_rate_by_pulsa()
-    # get_rate_sukma_convert()
+    get_rate_sukma_convert()
     # get_rate_zahra_convert()
     # get_rate_cv_convert()
     # get_rate_tentra_pulsa()
-    get_rate_conversa()
+    # get_rate_conversa()

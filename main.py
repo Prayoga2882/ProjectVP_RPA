@@ -26,7 +26,7 @@ button = tk.Button(root, text="Generate Rate Sukma Convert!", command=get_rate_s
 button.grid(row=2, column=2, padx=5, pady=5)
 
 button = tk.Button(root, text="Generate Rate Zahra Convert!", command=get_rate_zahra_convert, activebackground='yellow')
-button.grid(row=2, column=2, padx=5, pady=5)
+button.grid(row=2, column=3, padx=5, pady=5)
 
 button = tk.Button(root, text="Generate Rate CV Convert!", command=get_rate_cv_convert, activebackground='yellow')
 button.grid(row=3, column=0, padx=5, pady=5)
