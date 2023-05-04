@@ -1,4 +1,44 @@
-{
-  'name': 'Shopee 5.5 Bagi-Bagi Cuan | Nonton Video Total Hadiah 2M, Gratis Ongkir s/d 20RB Tanpa Min. Belanja & Flash Sale RP99 | 25 Apr-6 Mei 2023',
-  'periode': '2023-05-04'
-}
+[
+  {
+    "Indosat Transaksi dibawah 1 Juta": "0.8"
+  },
+  {
+    "Indosat Transaksi diatas 1 Juta": "0.8"
+  },
+  {
+    "XL Transaksi dibawah 1 Juta": "0.8"
+  },
+  {
+    "XL Transaksi diatas 1 Juta": "0.8"
+  },
+  {
+    "Telkomsel Transaksi dibawah 1 Juta": "0.8"
+  },
+  {
+    "Telkomsel Transaksi diatas 1 Juta": "0.8"
+  },
+  {
+    "Axis Transaksi dibawah 1 Juta": "0.8"
+  },
+  {
+    "Axis Transaksi diatas 1 Juta": "0.8"
+  },
+  {
+    "Three Transaksi dibawah 1 Juta": "0.82"
+  },
+  {
+    "Three Transaksi diatas 1 Juta": "0.82"
+  },
+  {
+    "Smartfren Transaksi dibawah 1 Juta": "0.75"
+  },
+  {
+    "Smartfren Transaksi diatas 1 Juta": "0.75"
+  },
+  {
+    "Byu Transaksi dibawah 1 Juta": "0.75"
+  },
+  {
+    "Byu Transaksi diatas 1 Juta": "0.75"
+  }
+]

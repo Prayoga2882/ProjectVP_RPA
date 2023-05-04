@@ -169,6 +169,105 @@ def get_rate_conversa():
         print("Except error from rate conversa", e)
 
 
+def get_rate_sulap_pulsa():
+    try:
+        url = 'https://sulap-pulsa.id/'
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.20, behavior: 'smooth'});")
+        time.sleep(3)
+
+        result = {
+            "company": "SULAP PULSA",
+            "rate": []
+        }
+
+        # ========= Indosat ========== #
+        rate_indosat = '/html/body/section[2]/div/div[2]/div/div/div[1]'
+        rate_indosat = driver.find_element(By.XPATH, rate_indosat).text.split("\n")
+        time.sleep(3)
+        rate_indosat.pop()
+        for i in range(0, len(rate_indosat), 2):
+            key = "Indosat " + rate_indosat[i + 1].replace("* ", "")
+            value = rate_indosat[i]
+            result["rate"].append({key: value})
+
+        # ========= XL ========== #
+        ratexl = '/html/body/section[2]/div/div[2]/div/div/div[2]'
+        ratexl = driver.find_element(By.XPATH, ratexl).text.split("\n")
+        time.sleep(3)
+        ratexl.pop()
+        for i in range(0, len(ratexl), 2):
+            key = "XL " + ratexl[i + 1].replace("* ", "")
+            value = ratexl[i]
+            result["rate"].append({key: value})
+
+        # ========= Telkomsel ========== #
+        ratetelkomsel = '/html/body/section[2]/div/div[2]/div/div/div[3]'
+        ratetelkomsel = driver.find_element(By.XPATH, ratetelkomsel).text.split("\n")
+        time.sleep(3)
+        ratetelkomsel.pop()
+        for i in range(0, len(ratetelkomsel), 2):
+            key = "Telkomsel " + ratetelkomsel[i + 1].replace("* ", "")
+            value = ratetelkomsel[i]
+            result["rate"].append({key: value})
+
+        # ========= Axis ========== #
+        rateaxis = '/html/body/section[2]/div/div[2]/div/div/div[4]'
+        rateaxis = driver.find_element(By.XPATH, rateaxis).text.split("\n")
+        time.sleep(3)
+        rateaxis.pop()
+        for i in range(0, len(rateaxis), 2):
+            key = "Axis " + rateaxis[i + 1].replace("* ", "")
+            value = rateaxis[i]
+            result["rate"].append({key: value})
+
+        # ========= Three ========== #
+        ratethree = '/html/body/section[2]/div/div[2]/div/div/div[5]'
+        ratethree = driver.find_element(By.XPATH, ratethree).text.split("\n")
+        time.sleep(3)
+        ratethree.pop()
+        for i in range(0, len(ratethree), 2):
+            key = "Three " + ratethree[i + 1].replace("* ", "")
+            value = ratethree[i]
+            result["rate"].append({key: value})
+
+        # ========= Smartfren ========== #
+        ratesmartfren = '/html/body/section[2]/div/div[2]/div/div/div[6]'
+        ratesmartfren = driver.find_element(By.XPATH, ratesmartfren).text.split("\n")
+        time.sleep(3)
+        ratesmartfren.pop()
+        for i in range(0, len(ratesmartfren), 2):
+            key = "Smartfren " + ratesmartfren[i + 1].replace("* ", "")
+            value = ratesmartfren[i]
+            result["rate"].append({key: value})
+
+        # ========= Byu ========== #
+        ratebyu = '/html/body/section[2]/div/div[2]/div/div/div[7]'
+        ratebyu = driver.find_element(By.XPATH, ratebyu).text.split("\n")
+        time.sleep(3)
+        ratebyu.pop()
+        for i in range(0, len(ratebyu), 2):
+            key = "Byu " + ratebyu[i + 1].replace("* ", "")
+            value = ratebyu[i]
+            result["rate"].append({key: value})
+
+        result = json.dumps(result)
+        payload = json.loads(result)
+        url = 'https://ratepromo.vercel.app/rate'
+        response = requests.post(url, json=payload)
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+
+        messagebox.showinfo("Success", "Success Generate rate SULAP PULSA")
+    except Exception as e:
+        print("Except error from rate sulap pulsa", e)
+
+
 def get_rate_tentra_pulsa():
     try:
         url = 'https://tetrapulsa.com/'
@@ -472,8 +571,9 @@ def get_rate_sukma_convert():
 if __name__ == '__main__':
     # get_rate_via_pulsa()
     # get_rate_by_pulsa()
-    get_rate_sukma_convert()
+    # get_rate_sukma_convert()
     # get_rate_zahra_convert()
     # get_rate_cv_convert()
     # get_rate_tentra_pulsa()
     # get_rate_conversa()
+    get_rate_sulap_pulsa()
