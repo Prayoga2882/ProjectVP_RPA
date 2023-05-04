@@ -1,4 +1,5 @@
 import tkinter as tk
+import threading
 from Get_Rate.index import *
 
 root = tk.Tk()
@@ -46,5 +47,9 @@ button.grid(row=2, column=4, padx=5, pady=5)
 result_label = tk.Label(root, text="")
 result_label.grid(row=4, columnspan=4)
 
-if __name__ == '__main__':
-    root.mainloop()
+schedule.every().day.at("08:00").do(get_rate_sulap_pulsa)
+
+scheduler_thread = threading.Thread(target=run_scheduler)
+scheduler_thread.start()
+
+root.mainloop()

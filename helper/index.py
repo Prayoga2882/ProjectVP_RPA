@@ -1,4 +1,6 @@
 import time
+
+import schedule
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import trafilatura
@@ -11,6 +13,12 @@ from datetime import datetime
 from selenium.webdriver.chrome.options import Options
 from tkinter import messagebox
 import dateutil.parser
+
+
+def run_scheduler():
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
 
 def json_cleaner(rate_dict):
