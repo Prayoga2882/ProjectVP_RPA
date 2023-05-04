@@ -28,10 +28,10 @@ def get_rate_via_pulsa():
         response = requests.post(url, json=payload)
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+
+        messagebox.showinfo("Success", "Success Generate Rate Via Pulsa")
     except Exception as e:
         print("Except error from rate via pulsa", e)
-
-    messagebox.showinfo("Success", "Success Generate Rate Via Pulsa")
 
 
 def get_rate_by_pulsa():
@@ -60,17 +60,17 @@ def get_rate_by_pulsa():
         response = requests.post(url, json=payload)
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+
+        messagebox.showinfo("Success", "Success Generate Rate By Pulsa")
     except Exception as e:
         print("Except error from rate by pulsa", e)
-
-    messagebox.showinfo("Success", "Success Generate Rate By Pulsa")
 
 
 def get_rate_conversa():
     try:
         url = 'https://conversa.trikersdev.com/'
-        # chrome_options = chrome_option()
-        driver = webdriver.Chrome()
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -158,6 +158,8 @@ def get_rate_conversa():
         print('Status Code:', response.status_code)
         print('Response:', response.json())
 
+        messagebox.showinfo("Success", "Success Generate Rate Conversa")
+
     except Exception as e:
         print("Except error from rate conversa", e)
 
@@ -165,8 +167,8 @@ def get_rate_conversa():
 def get_rate_tentra_pulsa():
     try:
         url = 'https://tetrapulsa.com/'
-        # chrome_options = chrome_option()
-        driver = webdriver.Chrome()
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -244,6 +246,8 @@ def get_rate_tentra_pulsa():
         print('Status Code:', response.status_code)
         print('Response:', response.json())
 
+        messagebox.showinfo("Success", "Success Generate rate TENTRA PULSA")
+
     except Exception as e:
         print("Except error from rate conversa", e)
 
@@ -251,8 +255,8 @@ def get_rate_tentra_pulsa():
 def get_rate_cv_convert():
     try:
         url = 'https://www.cvpulsa.id/'
-        # chrome_options = chrome_option()
-        driver = webdriver.Chrome()
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -279,6 +283,8 @@ def get_rate_cv_convert():
         response = requests.post(url, json=payload)
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+
+        messagebox.showinfo("Success", "Success get rate from CV CONVERT")
     except Exception as e:
         print("Except error from zona convert", e)
 
@@ -286,8 +292,8 @@ def get_rate_cv_convert():
 def get_rate_zahra_convert():
     try:
         url = 'https://www.zahraconvert.com/'
-        # chrome_options = chrome_option()
-        driver = webdriver.Chrome()
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -372,6 +378,8 @@ def get_rate_zahra_convert():
         print('Status Code:', response.status_code)
         print('Response:', response.json())
 
+        messagebox.showinfo("Success", "Success Generate rate zahra convert")
+
     except Exception as e:
         print("Except error from rate zahra convert :", e)
 
@@ -379,8 +387,8 @@ def get_rate_zahra_convert():
 def get_rate_sukma_convert():
     try:
         url = 'https://www.sukmaconvert.com/'
-        # chrome_options = chrome_option()
-        driver = webdriver.Chrome()
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -447,6 +455,8 @@ def get_rate_sukma_convert():
         response = requests.post(url, json=final)
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+
+        messagebox.showinfo("Success", "Success Generate rate sukma convert")
     except Exception as e:
         print("Except error from rate sukma convert", e)
 

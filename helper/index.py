@@ -254,10 +254,6 @@ def hit_promoTSEL1(name):
         periode = format_periode(result_tnc)
         scroll_25(driver)
 
-        click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
-        driver.find_element(By.XPATH, click2).click()
-        time.sleep(3)
-
         url_tnc = driver.current_url
 
         url = 'https://ratepromo.vercel.app/promo'
@@ -300,10 +296,6 @@ def hit_promoTSEL2(name):
         result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
         periode = format_periode(result_tnc)
         scroll_25(driver)
-
-        click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
-        driver.find_element(By.XPATH, click2).click()
-        time.sleep(3)
 
         url_tnc = driver.current_url
 
@@ -348,10 +340,6 @@ def hit_promoTSEL3(name):
         periode = format_periode(result_tnc)
         scroll_25(driver)
 
-        click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
-        driver.find_element(By.XPATH, click2).click()
-        time.sleep(3)
-
         url_tnc = driver.current_url
 
         url = 'https://ratepromo.vercel.app/promo'
@@ -394,10 +382,6 @@ def hit_promoTSEL4(name):
         result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
         periode = format_periode(result_tnc)
         scroll_25(driver)
-
-        click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
-        driver.find_element(By.XPATH, click2).click()
-        time.sleep(3)
 
         url_tnc = driver.current_url
 
@@ -442,10 +426,6 @@ def hit_promoTSEL5(name):
         periode = format_periode(result_tnc)
         scroll_25(driver)
 
-        click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
-        driver.find_element(By.XPATH, click2).click()
-        time.sleep(3)
-
         url_tnc = driver.current_url
 
         url = 'https://ratepromo.vercel.app/promo'
@@ -488,10 +468,6 @@ def hit_promoTSEL6(name):
         result_tnc = driver.find_element(By.CLASS_NAME, "typografi-g-body-1-bold").text
         periode = format_periode(result_tnc)
         scroll_25(driver)
-
-        click2 = '/html/body/div[5]/div[2]/div/div/div/div/div[4]/div/div/div/div[4]/div[1]/p'
-        driver.find_element(By.XPATH, click2).click()
-        time.sleep(3)
 
         url_tnc = driver.current_url
 
@@ -546,8 +522,8 @@ def generate_promo_axis():
 def hit_promoAXIS1():
     try:
         url = 'https://www.axis.co.id/promo'
-        # chrome_options = chrome_option()
-        driver = webdriver.Chrome()
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -682,13 +658,16 @@ def periode_format_axis(data):
 def generate_promo_indosat():
     hit_promo_isat1()
     hit_promo_isat2()
+    hit_promo_isat3()
+
+    messagebox.showinfo("Info", "Generate Promo Indosat Berhasil")
 
 
 def hit_promo_isat1():
     try:
         url = "https://indosatooredoo.com/portal/id/pspromolanding"
-        # chrome_options = chrome_option()
-        driver = webdriver.Chrome()
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -704,11 +683,11 @@ def hit_promo_isat1():
 
         url_tnc = driver.current_url
 
-        step3 = '/html/body/div[1]/div[4]/section[3]/div/div[2]/div/div/div/div[3]/div[1]/a'
+        step3 = '/html/body/div[1]/div[4]/section[3]/div/div[2]/div/div/div/div[2]/div[1]/a'
         driver.find_element(By.XPATH, step3).click()
         time.sleep(3)
 
-        step4 = '/html/body/div[1]/div[4]/section[3]/div/div[2]/div/div/div/div[3]/div[2]/div/div'
+        step4 = '/html/body/div[1]/div[4]/section[3]/div/div[2]/div/div/div/div[2]/div[2]/div/div'
         periode = driver.find_element(By.XPATH, step4).text
         time.sleep(3)
 
@@ -746,8 +725,8 @@ def hit_promo_isat1():
 def hit_promo_isat2():
     try:
         url = "https://www.indosatooredoo.com/portal/id/pspromo_inboundroaming"
-        # chrome_options = chrome_option()
-        driver = webdriver.Chrome()
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -811,9 +790,63 @@ def hit_promo_isat2():
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+
     except Exception as e:
         print("Error from hit_promo_indosat 2: ", e)
 
 
+def hit_promo_isat3():
+    try:
+        url = 'https://indosatooredoo.com/portal/id/psdevicebundle'
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        step1 = '/html/body/div[1]/div[4]/section[1]/div/div/h3'
+        name = driver.find_element(By.XPATH, step1).text
+        time.sleep(3)
+
+        driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.80, behavior: 'smooth'});")
+        time.sleep(3)
+        url_tnc = driver.current_url
+
+        step2 = '/html/body/div[1]/div[4]/section[4]/div/div[2]/div/div/div/div[2]/div[1]/a'
+        driver.find_element(By.XPATH, step2).click()
+        time.sleep(3)
+
+        step3 = '/html/body/div[1]/div[4]/section[4]/div/div[2]/div/div/div/div[2]/div[2]/div/div'
+        periode = driver.find_element(By.XPATH, step3).text
+        time.sleep(3)
+
+        tanggal_pattern = re.compile(r'\d{4}-\d{2}-\d{2}')
+        tanggal_match = tanggal_pattern.search(periode)
+
+        tanggal = ''
+        if tanggal_match:
+            tanggal = tanggal_match.group()
+        else:
+            print("Tidak ditemukan tanggal dalam narasi SMS.")
+
+        now = datetime.now()
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "provider": "indosat",
+            "name": name,
+            "url": url_tnc,
+            "startDate": now.strftime('%Y-%m-%d'),
+            "endDate": tanggal,
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print("Error from hit_promo_indosat 3: ", e)
+
+
 if __name__ == '__main__':
-    generate_promo_axis()
+    hit_promo_isat3()

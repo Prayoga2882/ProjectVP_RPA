@@ -3,7 +3,7 @@ import requests
 import json
 
 
-def regex_search():
+def regex_search_indosat():
     with open("./conf/search_words.json", "r") as f:
         search_words = json.load(f)
 
@@ -19,4 +19,4 @@ def regex_search():
 
 
 if __name__ == '__main__':
-    regex_search()
+    regex_search_indosat()
