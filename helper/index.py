@@ -202,6 +202,41 @@ def chrome_option():
     return chrome_options
 
 
+def clean_promo_tokopedia(lines):
+    # ambil tanggal dan bulan
+    date_range = lines[2].split("-")
+    start_date_str = date_range[0].strip()
+    end_date_str = date_range[1].strip()
+
+    # ubah format bulan menjadi angka
+    months = {
+        'Jan': '01',
+        'Feb': '02',
+        'Mar': '03',
+        'Apr': '04',
+        'Mei': '05',
+        'Jun': '06',
+        'Jul': '07',
+        'Ags': '08',
+        'Sep': '09',
+        'Okt': '10',
+        'Nov': '11',
+        'Des': '12'
+    }
+
+    start_date_parts = start_date_str.split(" ")
+    start_month = months[start_date_parts[1]]
+    start_day = start_date_parts[0]
+    start_date = datetime.strptime(f"2023-{start_month}-{start_day}", '%Y-%m-%d').date()
+
+    end_date_parts = end_date_str.split(" ")
+    end_month = months[end_date_parts[1]]
+    end_day = end_date_parts[0]
+    end_date = datetime.strptime(f"2023-{end_month}-{end_day}", '%Y-%m-%d').date()
+
+    return start_date, end_date
+
+
 def clean_promo_shopee(driver, promo):
     text_promo = driver.find_element(By.XPATH, promo).text
     details = {
@@ -561,50 +596,17 @@ def hit_promo_tokped1(driver):
         prom1_text = driver.find_element(By.XPATH, promo1).text
         lines = prom1_text.split("\n")
 
+        statDate, endDate = clean_promo_tokopedia(lines)
+
         url = 'https://ratepromo.vercel.app/promo'
-
-        # ambil tanggal dan bulan
-        date_range = lines[2].split("-")
-        start_date_str = date_range[0].strip()
-        end_date_str = date_range[1].strip()
-
-        # ubah format bulan menjadi angka
-        months = {
-            'Jan': '01',
-            'Feb': '02',
-            'Mar': '03',
-            'Apr': '04',
-            'Mei': '05',
-            'Jun': '06',
-            'Jul': '07',
-            'Ags': '08',
-            'Sep': '09',
-            'Okt': '10',
-            'Nov': '11',
-            'Des': '12'
-        }
-
-        start_date_parts = start_date_str.split(" ")
-        start_month = months[start_date_parts[1]]
-        start_day = start_date_parts[0]
-        start_date = datetime.strptime(f"2023-{start_month}-{start_day}", '%Y-%m-%d').date()
-
-        end_date_parts = end_date_str.split(" ")
-        end_month = months[end_date_parts[1]]
-        end_day = end_date_parts[0]
-        end_date = datetime.strptime(f"2023-{end_month}-{end_day}", '%Y-%m-%d').date()
-
-        print("start_date: ", start_date)
-        print("end_date: ", end_date)
-
         url_tnc = driver.current_url
 
         payload = {
             "provider": "Tokopedia",
             "name": lines[0],
             "url": url_tnc,
-            "startDate": str(start_date),
-            "endDate": str(end_date),
+            "startDate": str(statDate),
+            "endDate": str(endDate),
             "isActive": 1
 
         }
