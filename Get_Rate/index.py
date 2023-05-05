@@ -169,6 +169,53 @@ def get_rate_conversa():
         print("Except error from rate conversa", e)
 
 
+def get_rate_pake_pulsa():
+    try:
+        url = 'https://pakepulsa.com/'
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.12, behavior: 'smooth'});")
+        time.sleep(3)
+
+        rate = '/html/body/main/section[2]/div/div[2]/div'
+        rate = driver.find_element(By.XPATH, rate).text.split("\n")
+
+        result = {"company": "PAKE PULSA", "rate": []}
+
+        for i in range(len(rate)):
+            if len(rate[i]) > 1:
+                if "Minim" in rate[i]:
+                    min_val = rate[i].split(":")[1].strip()
+                    rate_val = rate[i + 1].split(":")[1].strip()
+                    company_name = rate[i - 1]
+                    if "TRI" in company_name:
+                        company_name = "TRI minimal {}".format(min_val)
+                    elif "INDOSAT" in company_name:
+                        company_name = "INDOSAT minimal {}".format(min_val)
+                    elif "TELKOMSEL" in company_name:
+                        company_name = "TELKOMSEL minimal {}".format(min_val)
+                    elif "AXIS" in company_name:
+                        company_name = "AXIS minimal {}".format(min_val)
+                    else:
+                        company_name = company_name.strip()
+                    result["rate"].append({company_name: rate_val})
+
+        result = json.dumps(result)
+        payload = json.loads(result)
+
+        url = 'https://ratepromo.vercel.app/rate'
+        response = requests.post(url, json=payload)
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+
+    except Exception as e:
+        print("Except error from rate PAKE PULSA :", e)
+
+
 def get_rate_sulap_pulsa():
     try:
         url = 'https://sulap-pulsa.id/'
@@ -576,4 +623,5 @@ if __name__ == '__main__':
     # get_rate_cv_convert()
     # get_rate_tentra_pulsa()
     # get_rate_conversa()
-    get_rate_sulap_pulsa()
+    # get_rate_sulap_pulsa()
+    get_rate_pake_pulsa()

@@ -1,4 +1,17 @@
 {
-  'name': 'Pakai CIMB Niaga Credit Card Hemat s.d Rp 500rb',
-  'periode': '1 Mar - 3 Des 2023'
+  'company': 'PAKE PULSA',
+  'rate': [
+    {
+      'TRI minimal 25.000': '0.82'
+    },
+    {
+      'INDOSAT minimal 27.000': '0.72'
+    },
+    {
+      'TELKOMSEL minimal 30.000': '0.78'
+    },
+    {
+      'AXIS minimal 30.000': '0.77'
+    }
+  ]
 }

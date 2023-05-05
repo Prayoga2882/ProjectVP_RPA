@@ -45,6 +45,9 @@ button.grid(row=2, column=4, padx=5, pady=5)
 button = tk.Button(root, text="Generate Rate Sulap Pulsa!", command=get_rate_sulap_pulsa, activebackground='yellow')
 button.grid(row=2, column=5, padx=5, pady=5)
 
+button = tk.Button(root, text="Generate Rate Pake Pulsa!", command=get_rate_pake_pulsa, activebackground='yellow')
+button.grid(row=3, column=4, padx=5, pady=5)
+
 result_label = tk.Label(root, text="")
 result_label.grid(row=4, columnspan=4)
 
