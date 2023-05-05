@@ -11,8 +11,8 @@ from datetime import timedelta
 from bs4 import BeautifulSoup
 from datetime import datetime
 from selenium.webdriver.chrome.options import Options
-from tkinter import messagebox
 import dateutil.parser
+import datetime as dt
 
 
 def run_scheduler():
@@ -234,11 +234,6 @@ def format_periode(data):
     return output
 
 
-def show_messagebox(root):
-    messagebox.showinfo("Message", "Hello, World!")
-    root.destroy()
-
-
 def generate_promo_telkomsel():
     downloaded = trafilatura.fetch_url('https://www.telkomsel.com/promo')
     soup = BeautifulSoup(downloaded, 'html.parser')
@@ -256,7 +251,7 @@ def generate_promo_telkomsel():
     hit_promoTSEL5(name)
     hit_promoTSEL6(name)
 
-    messagebox.showinfo("Success", "Promo Telkomsel has been generated!")
+    print("Success", "Promo Telkomsel has been generated!")
 
 
 def hit_promoTSEL1(name):
@@ -540,6 +535,92 @@ def get_month_number(month):
     return months[month]
 
 
+def get_promo_tokopedia():
+    try:
+        url = 'https://www.tokopedia.com/promo/'
+        # chrome_options = chrome_option()
+        driver = webdriver.Chrome()
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+
+        driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.33, behavior: 'smooth'});")
+        time.sleep(3)
+
+        hit_promo_tokped1(driver)
+
+        print("Info", "Success Hit Promo Tokopedia")
+
+    except Exception as e:
+        print("Error from get_promo_tokopedia: ", e)
+
+
+def hit_promo_tokped1(driver):
+    try:
+        promo1 = '/html/body/main/div[2]/section[3]/div/div[1]'
+        prom1_text = driver.find_element(By.XPATH, promo1).text
+        lines = prom1_text.split("\n")
+
+        url = 'https://ratepromo.vercel.app/promo'
+
+        # ambil tanggal dan bulan
+        date_range = lines[2].split("-")
+        start_date_str = date_range[0].strip()
+        end_date_str = date_range[1].strip()
+
+        # ubah format bulan menjadi angka
+        months = {
+            'Jan': '01',
+            'Feb': '02',
+            'Mar': '03',
+            'Apr': '04',
+            'Mei': '05',
+            'Jun': '06',
+            'Jul': '07',
+            'Ags': '08',
+            'Sep': '09',
+            'Okt': '10',
+            'Nov': '11',
+            'Des': '12'
+        }
+
+        start_date_parts = start_date_str.split(" ")
+        start_month = months[start_date_parts[1]]
+        start_day = start_date_parts[0]
+        start_date = datetime.strptime(f"2023-{start_month}-{start_day}", '%Y-%m-%d').date()
+
+        end_date_parts = end_date_str.split(" ")
+        end_month = months[end_date_parts[1]]
+        end_day = end_date_parts[0]
+        end_date = datetime.strptime(f"2023-{end_month}-{end_day}", '%Y-%m-%d').date()
+
+        print("start_date: ", start_date)
+        print("end_date: ", end_date)
+
+        url_tnc = driver.current_url
+
+        payload = {
+            "provider": "Tokopedia",
+            "name": lines[0],
+            "url": url_tnc,
+            "startDate": str(start_date),
+            "endDate": str(end_date),
+            "isActive": 1
+
+        }
+        json_data = json.dumps(payload)
+        payload = json.loads(json_data)
+        print("payload: ", payload)
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+
+    except Exception as e:
+        print("Error from hit_promo_tokped 1: ", e)
+
+
 def get_promo_shopee():
     url = 'https://shopee.co.id/campaigns'
     chrome_options = chrome_option()
@@ -559,7 +640,8 @@ def get_promo_shopee():
     hit_promo_shopee7(driver)
     hit_promo_shopee8(driver)
     hit_promo_shopee9(driver)
-    messagebox.showinfo("Selesai", "Generate Promo Shopee Selesai")
+
+    print("Selesai", "Generate Promo Shopee Selesai")
 
 
 def hit_promo_shopee1(driver):
@@ -791,7 +873,7 @@ def generate_promo_axis():
     hit_promoAXIS1()
     # hit_promoAXIS2()
 
-    messagebox.showinfo("Success", "Promo Axis has been generated!")
+    print("Success", "Promo Axis has been generated!")
 
 
 def hit_promoAXIS1():
@@ -935,7 +1017,7 @@ def generate_promo_indosat():
     hit_promo_isat2()
     hit_promo_isat3()
 
-    messagebox.showinfo("Info", "Generate Promo Indosat Berhasil")
+    print("Info", "Generate Promo Indosat Berhasil")
 
 
 def hit_promo_isat1():
@@ -1124,4 +1206,4 @@ def hit_promo_isat3():
 
 
 if __name__ == '__main__':
-    get_promo_shopee()
+    get_promo_tokopedia()

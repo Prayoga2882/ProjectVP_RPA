@@ -1,44 +1,4 @@
-[
-  {
-    "Indosat Transaksi dibawah 1 Juta": "0.8"
-  },
-  {
-    "Indosat Transaksi diatas 1 Juta": "0.8"
-  },
-  {
-    "XL Transaksi dibawah 1 Juta": "0.8"
-  },
-  {
-    "XL Transaksi diatas 1 Juta": "0.8"
-  },
-  {
-    "Telkomsel Transaksi dibawah 1 Juta": "0.8"
-  },
-  {
-    "Telkomsel Transaksi diatas 1 Juta": "0.8"
-  },
-  {
-    "Axis Transaksi dibawah 1 Juta": "0.8"
-  },
-  {
-    "Axis Transaksi diatas 1 Juta": "0.8"
-  },
-  {
-    "Three Transaksi dibawah 1 Juta": "0.82"
-  },
-  {
-    "Three Transaksi diatas 1 Juta": "0.82"
-  },
-  {
-    "Smartfren Transaksi dibawah 1 Juta": "0.75"
-  },
-  {
-    "Smartfren Transaksi diatas 1 Juta": "0.75"
-  },
-  {
-    "Byu Transaksi dibawah 1 Juta": "0.75"
-  },
-  {
-    "Byu Transaksi diatas 1 Juta": "0.75"
-  }
-]
+{
+  'name': 'Pakai CIMB Niaga Credit Card Hemat s.d Rp 500rb',
+  'periode': '1 Mar - 3 Des 2023'
+}
