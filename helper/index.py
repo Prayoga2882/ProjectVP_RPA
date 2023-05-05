@@ -583,6 +583,9 @@ def get_promo_tokopedia():
         time.sleep(3)
 
         hit_promo_tokped1(driver)
+        hit_promo_tokped2(driver)
+        hit_promo_tokped3(driver)
+        hit_promo_tokped4(driver)
 
         print("Info", "Success Hit Promo Tokopedia")
 
@@ -621,6 +624,103 @@ def hit_promo_tokped1(driver):
 
     except Exception as e:
         print("Error from hit_promo_tokped 1: ", e)
+
+
+def hit_promo_tokped2(driver):
+    try:
+        promo2 = '/html/body/main/div[2]/section[3]/div/div[2]'
+        promo2_text = driver.find_element(By.XPATH, promo2).text
+        lines = promo2_text.split("\n")
+
+        statDate, endDate = clean_promo_tokopedia(lines)
+
+        url = 'https://ratepromo.vercel.app/promo'
+        url_tnc = driver.current_url
+
+        payload = {
+            "provider": "Tokopedia",
+            "name": lines[0],
+            "url": url_tnc,
+            "startDate": str(statDate),
+            "endDate": str(endDate),
+            "isActive": 1
+
+        }
+        json_data = json.dumps(payload)
+        payload = json.loads(json_data)
+        print("payload: ", payload)
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+
+    except Exception as e:
+        print("Error from hit_promo_tokped 2: ", e)
+
+
+def hit_promo_tokped3(driver):
+    try:
+        promo3 = '/html/body/main/div[2]/section[3]/div/div[3]'
+        promo3_text = driver.find_element(By.XPATH, promo3).text
+        lines = promo3_text.split("\n")
+
+        statDate, endDate = clean_promo_tokopedia(lines)
+
+        url = 'https://ratepromo.vercel.app/promo'
+        url_tnc = driver.current_url
+
+        payload = {
+            "provider": "Tokopedia",
+            "name": lines[0],
+            "url": url_tnc,
+            "startDate": str(statDate),
+            "endDate": str(endDate),
+            "isActive": 1
+
+        }
+        json_data = json.dumps(payload)
+        payload = json.loads(json_data)
+        print("payload: ", payload)
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print("Error from hit_promo_tokped 3: ", e)
+
+
+def hit_promo_tokped4(driver):
+    try:
+        promo4 = '/html/body/main/div[2]/section[3]/div/div[4]'
+        promo4_text = driver.find_element(By.XPATH, promo4).text
+        lines = promo4_text.split("\n")
+
+        statDate, endDate = clean_promo_tokopedia(lines)
+
+        url = 'https://ratepromo.vercel.app/promo'
+        url_tnc = driver.current_url
+
+        payload = {
+            "provider": "Tokopedia",
+            "name": lines[0],
+            "url": url_tnc,
+            "startDate": str(statDate),
+            "endDate": str(endDate),
+            "isActive": 1
+
+        }
+        json_data = json.dumps(payload)
+        payload = json.loads(json_data)
+        print("payload: ", payload)
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+    except Exception as e:
+        print("Error from hit_promo_tokped 4: ", e)
 
 
 def get_promo_shopee():
