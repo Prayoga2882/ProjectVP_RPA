@@ -34,7 +34,7 @@ def get_rate_via_pulsa():
         print('Status Code:', response.status_code)
         print('Response:', response.json())
 
-        messagebox.showinfo("Success", "Success Generate Rate Via Pulsa")
+        messagebox.showinfo("Success", "Success Generate Rate VIA PULSA")
     except Exception as e:
         print("Except error from rate via pulsa", e)
 
@@ -66,7 +66,7 @@ def get_rate_by_pulsa():
         print('Status Code:', response.status_code)
         print('Response:', response.json())
 
-        messagebox.showinfo("Success", "Success Generate Rate By Pulsa")
+        messagebox.showinfo("Success", "Success Generate Rate BY PULSA")
     except Exception as e:
         print("Except error from rate by pulsa", e)
 
@@ -163,7 +163,7 @@ def get_rate_conversa():
         print('Status Code:', response.status_code)
         print('Response:', response.json())
 
-        messagebox.showinfo("Success", "Success Generate Rate Conversa")
+        messagebox.showinfo("Success", "Success Generate Rate CONVERSA")
 
     except Exception as e:
         print("Except error from rate conversa", e)
@@ -482,7 +482,7 @@ def get_rate_zahra_convert():
         print('Status Code:', response.status_code)
         print('Response:', response.json())
 
-        messagebox.showinfo("Success", "Success Generate rate zahra convert")
+        messagebox.showinfo("Success", "Success Generate rate ZAHRA CONVERT")
 
     except Exception as e:
         print("Except error from rate zahra convert :", e)
@@ -563,7 +563,7 @@ def get_rate_sukma_convert():
         print('Status Code:', response.status_code)
         print('Response:', response.json())
 
-        messagebox.showinfo("Success", "Success Generate rate sukma convert")
+        messagebox.showinfo("Success", "Success Generate rate SUKMA CONVERT")
     except Exception as e:
         print("Except error from rate sukma convert", e)
 

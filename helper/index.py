@@ -542,8 +542,8 @@ def get_month_number(month):
 
 def get_promo_shopee():
     url = 'https://shopee.co.id/campaigns'
-    # chrome_options = chrome_option()
-    driver = webdriver.Chrome()
+    chrome_options = chrome_option()
+    driver = webdriver.Chrome(options=chrome_options)
     driver.maximize_window()
     driver.get(url)
     time.sleep(3)
