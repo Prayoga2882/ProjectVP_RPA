@@ -618,10 +618,10 @@ def get_rate_sukma_convert():
 if __name__ == '__main__':
     # get_rate_via_pulsa()
     # get_rate_by_pulsa()
-    # get_rate_sukma_convert()
+    get_rate_sukma_convert()
     # get_rate_zahra_convert()
     # get_rate_cv_convert()
     # get_rate_tentra_pulsa()
     # get_rate_conversa()
     # get_rate_sulap_pulsa()
-    get_rate_pake_pulsa()
+    # get_rate_pake_pulsa()
