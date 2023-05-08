@@ -33,8 +33,8 @@ def get_rate_via_pulsa():
         response = requests.post(url, json=payload)
         print('Status Code:', response.status_code)
         print('Response:', response.json())
-
         print("Success", "Success Generate Rate VIA PULSA")
+
     except Exception as e:
         print("Except error from rate via pulsa", e)
 
@@ -65,8 +65,8 @@ def get_rate_by_pulsa():
         response = requests.post(url, json=payload)
         print('Status Code:', response.status_code)
         print('Response:', response.json())
-
         print("Success", "Success Generate Rate BY PULSA")
+
     except Exception as e:
         print("Except error from rate by pulsa", e)
 
@@ -162,7 +162,6 @@ def get_rate_conversa():
         response = requests.post(url, json=payload)
         print('Status Code:', response.status_code)
         print('Response:', response.json())
-
         print("Success", "Success Generate Rate CONVERSA")
 
     except Exception as e:
@@ -211,6 +210,7 @@ def get_rate_pake_pulsa():
         response = requests.post(url, json=payload)
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Success", "Success Generate Rate PAKE PULSA")
 
     except Exception as e:
         print("Except error from rate PAKE PULSA :", e)
@@ -309,8 +309,8 @@ def get_rate_sulap_pulsa():
         response = requests.post(url, json=payload)
         print('Status Code:', response.status_code)
         print('Response:', response.json())
-
         print("Success", "Success Generate rate SULAP PULSA")
+
     except Exception as e:
         print("Except error from rate sulap pulsa", e)
 
@@ -396,7 +396,6 @@ def get_rate_tentra_pulsa():
         response = requests.post(url, json=payload)
         print('Status Code:', response.status_code)
         print('Response:', response.json())
-
         print("Success", "Success Generate rate TENTRA PULSA")
 
     except Exception as e:
@@ -434,8 +433,8 @@ def get_rate_cv_convert():
         response = requests.post(url, json=payload)
         print('Status Code:', response.status_code)
         print('Response:', response.json())
-
         print("Success", "Success get rate from CV CONVERT")
+
     except Exception as e:
         print("Except error from zona convert", e)
 
@@ -528,7 +527,6 @@ def get_rate_zahra_convert():
         response = requests.post(url, json=payload)
         print('Status Code:', response.status_code)
         print('Response:', response.json())
-
         print("Success", "Success Generate rate ZAHRA CONVERT")
 
     except Exception as e:
@@ -609,8 +607,8 @@ def get_rate_sukma_convert():
         response = requests.post(url, json=final)
         print('Status Code:', response.status_code)
         print('Response:', response.json())
-
         print("Success", "Success Generate rate SUKMA CONVERT")
+
     except Exception as e:
         print("Except error from rate sukma convert", e)
 

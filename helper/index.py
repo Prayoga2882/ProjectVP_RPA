@@ -328,6 +328,7 @@ def hit_promoTSEL1(name):
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Success", "Promo Telkomsel 1 has been generated!")
     except Exception as e:
         print("Error from hit_promo_telkomsel 1: ", e)
 
@@ -371,6 +372,7 @@ def hit_promoTSEL2(name):
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Success", "Promo Telkomsel 2 has been generated!")
     except Exception as e:
         print("Error from hit_promo_telkomsel 2: ", e)
 
@@ -414,6 +416,7 @@ def hit_promoTSEL3(name):
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Success", "Promo Telkomsel 3 has been generated!")
     except Exception as e:
         print("Error from hit_promo_telkomsel 3: ", e)
 
@@ -457,6 +460,7 @@ def hit_promoTSEL4(name):
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Success", "Promo Telkomsel 4 has been generated!")
     except Exception as e:
         print("Error from hit_promo_telkomsel 4: ", e)
 
@@ -500,6 +504,7 @@ def hit_promoTSEL5(name):
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Success", "Promo Telkomsel 5 has been generated!")
     except Exception as e:
         print("Error from hit_promo_telkomsel 5: ", e)
 
@@ -543,6 +548,7 @@ def hit_promoTSEL6(name):
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Success", "Promo Telkomsel 6 has been generated!")
     except Exception as e:
         print("Error from hit_promo_telkomsel 6: ", e)
 
@@ -615,13 +621,12 @@ def hit_promo_tokped1(driver):
         }
         json_data = json.dumps(payload)
         payload = json.loads(json_data)
-        print("payload: ", payload)
 
         response = requests.post(url, json=payload)
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
-
+        print("Success", "Promo Tokopedia 1 has been generated!")
     except Exception as e:
         print("Error from hit_promo_tokped 1: ", e)
 
@@ -648,13 +653,12 @@ def hit_promo_tokped2(driver):
         }
         json_data = json.dumps(payload)
         payload = json.loads(json_data)
-        print("payload: ", payload)
 
         response = requests.post(url, json=payload)
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
-
+        print("Success", "Promo Tokopedia 2 has been generated!")
     except Exception as e:
         print("Error from hit_promo_tokped 2: ", e)
 
@@ -681,12 +685,12 @@ def hit_promo_tokped3(driver):
         }
         json_data = json.dumps(payload)
         payload = json.loads(json_data)
-        print("payload: ", payload)
 
         response = requests.post(url, json=payload)
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Success", "Promo Tokopedia 3 has been generated!")
     except Exception as e:
         print("Error from hit_promo_tokped 3: ", e)
 
@@ -713,12 +717,12 @@ def hit_promo_tokped4(driver):
         }
         json_data = json.dumps(payload)
         payload = json.loads(json_data)
-        print("payload: ", payload)
 
         response = requests.post(url, json=payload)
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Success", "Promo Tokopedia 4 has been generated!")
     except Exception as e:
         print("Error from hit_promo_tokped 4: ", e)
 
@@ -767,6 +771,7 @@ def hit_promo_shopee1(driver):
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Selesai", "Generate Promo Shopee 1 Selesai")
     except Exception as e:
         print("Error from hit_promo_shopee 1: ", e)
 
@@ -792,6 +797,7 @@ def hit_promo_shopee2(driver):
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Selesai", "Generate Promo Shopee 2 Selesai")
     except Exception as e:
         print("Error from hit_promo_shopee 2: ", e)
 
@@ -817,6 +823,7 @@ def hit_promo_shopee3(driver):
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Selesai", "Generate Promo Shopee 3 Selesai")
     except Exception as e:
         print("Error from hit_promo_shopee 3: ", e)
 
@@ -842,6 +849,7 @@ def hit_promo_shopee4(driver):
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Selesai", "Generate Promo Shopee 4 Selesai")
     except Exception as e:
         print("Error from hit_promo_shopee 4: ", e)
 
@@ -867,6 +875,7 @@ def hit_promo_shopee5(driver):
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Selesai", "Generate Promo Shopee 5 Selesai")
     except Exception as e:
         print("Error from hit_promo_shopee 5: ", e)
 
@@ -892,6 +901,7 @@ def hit_promo_shopee6(driver):
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Selesai", "Generate Promo Shopee 6 Selesai")
     except Exception as e:
         print("Error from hit_promo_shopee 6: ", e)
 
@@ -917,6 +927,7 @@ def hit_promo_shopee7(driver):
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Selesai", "Generate Promo Shopee 7 Selesai")
     except Exception as e:
         print("Error from hit_promo_shopee 7: ", e)
 
@@ -942,6 +953,7 @@ def hit_promo_shopee8(driver):
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Selesai", "Generate Promo Shopee 8 Selesai")
     except Exception as e:
         print("Error from hit_promo_shopee 8: ", e)
 
@@ -967,6 +979,7 @@ def hit_promo_shopee9(driver):
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Selesai", "Generate Promo Shopee 9 Selesai")
     except Exception as e:
         print("Error from hit_promo_shopee 9: ", e)
 
@@ -1020,6 +1033,7 @@ def hit_promoAXIS1():
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Success", "Promo Axis 1 has been generated!")
     except Exception as e:
         print("Error from hit_promo_axis 1: ", e)
 
@@ -1177,6 +1191,7 @@ def hit_promo_isat1():
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Info", "Hit Promo Indosat 1 Berhasil")
     except Exception as e:
         print("Error from hit_promo_indosat 1: ", e)
 
@@ -1249,7 +1264,7 @@ def hit_promo_isat2():
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
-
+        print("Info", "Hit Promo Indosat 2 Berhasil")
     except Exception as e:
         print("Error from hit_promo_indosat 2: ", e)
 
@@ -1303,6 +1318,7 @@ def hit_promo_isat3():
         requests.get('https://ratepromo.vercel.app/cek-expired-promo')
         print('Status Code:', response.status_code)
         print('Response:', response.json())
+        print("Info", "Hit Promo Indosat 3 Berhasil")
     except Exception as e:
         print("Error from hit_promo_indosat 3: ", e)
 
