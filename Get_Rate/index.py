@@ -2,6 +2,26 @@ from helper.index import *
 from conf.xpath_conf import sukma_convert
 
 
+def do_rate():
+    get_rate_via_pulsa()
+    get_rate_by_pulsa()
+    get_rate_sukma_convert()  # cannot be headless
+    get_rate_zahra_convert()
+    get_rate_cv_convert()
+    get_rate_tentra_pulsa()
+    get_rate_conversa()
+    get_rate_sulap_pulsa()
+    get_rate_pake_pulsa()  # cannot be headless
+
+
+def do_promo():
+    generate_promo_telkomsel()
+    generate_promo_indosat()
+    generate_promo_axis()
+    get_promo_shopee()
+    get_promo_tokopedia()  # cannot be headless
+
+
 def get_rate_via_pulsa():
     try:
         url = 'https://www.viapulsa.com/'
