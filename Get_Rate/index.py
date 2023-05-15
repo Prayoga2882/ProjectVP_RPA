@@ -1,6 +1,5 @@
 from helper.index import *
 from conf.xpath_conf import sukma_convert
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 def do_rate():
@@ -27,7 +26,7 @@ def get_rate_via_pulsa():
     try:
         url = 'https://www.viapulsa.com/'
         chrome_options = chrome_option()
-        driver = webdriver.Chrome(webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options))
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -96,7 +95,7 @@ def get_rate_conversa():
     try:
         url = 'https://conversa.trikersdev.com/'
         chrome_options = chrome_option()
-        driver = webdriver.Chrome(webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options))
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -193,7 +192,7 @@ def get_rate_pake_pulsa():
     try:
         url = 'https://pakepulsa.com/'
         # chrome_options = chrome_option()
-        driver = webdriver.Chrome(webdriver.Chrome(ChromeDriverManager().install()))
+        driver = webdriver.Chrome()
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -241,7 +240,7 @@ def get_rate_sulap_pulsa():
     try:
         url = 'https://sulap-pulsa.id/'
         chrome_options = chrome_option()
-        driver = webdriver.Chrome(webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options))
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -340,7 +339,7 @@ def get_rate_tentra_pulsa():
     try:
         url = 'https://tetrapulsa.com/'
         chrome_options = chrome_option()
-        driver = webdriver.Chrome(webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options))
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -427,7 +426,7 @@ def get_rate_cv_convert():
     try:
         url = 'https://www.cvpulsa.id/'
         chrome_options = chrome_option()
-        driver = webdriver.Chrome(webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options))
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -464,7 +463,7 @@ def get_rate_zahra_convert():
     try:
         url = 'https://www.zahraconvert.com/'
         chrome_options = chrome_option()
-        driver = webdriver.Chrome(webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options))
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -558,7 +557,7 @@ def get_rate_sukma_convert():
     try:
         url = 'https://www.sukmaconvert.com/'
         # chrome_options = chrome_option()
-        driver = webdriver.Chrome(webdriver.Chrome(ChromeDriverManager().install()))
+        driver = webdriver.Chrome()
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
