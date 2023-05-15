@@ -987,6 +987,7 @@ def hit_promo_shopee9(driver):
 def generate_promo_axis():
     hit_promoAXIS1()
     hit_promoAXIS2()
+    hit_promoAXIS3()
 
     print("Success", "Promo Axis has been generated!")
 
@@ -1085,6 +1086,54 @@ def hit_promoAXIS2():
 
     except Exception as e:
         print("Error from hit_promo_axis 2: ", e)
+
+
+def hit_promoAXIS3():
+    try:
+        url = 'https://www.axis.co.id/promo'
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
+        driver.maximize_window()
+        driver.get(url)
+        time.sleep(3)
+        check = driver.find_element(By.XPATH, '//*[@id="modal-package-access"]/div/div/button/i')
+        if check:
+            check.click()
+        driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.40, behavior: 'smooth'});")
+        time.sleep(3)
+
+        step1 = '/html/body/section[1]/div/div[3]/div/div[3]/a/div[1]/img'
+        driver.find_element(By.XPATH, step1).click()
+        time.sleep(3)
+
+        step2 = '/html/body/section[1]/div/div/div/div[1]/h1'
+        name = driver.find_element(By.XPATH, step2).text
+        time.sleep(3)
+
+        step3 = '/html/body/section[1]/div/div/div/div[2]/p[1]'
+        periode = driver.find_element(By.XPATH, step3).text
+        result_periode = periode_format_axis(periode)
+
+        url_tnc = driver.current_url
+
+        url = 'https://ratepromo.vercel.app/promo'
+        payload = {
+            "provider": "axis",
+            "name": name,
+            "url": url_tnc,
+            "startDate": result_periode["startDate"],
+            "endDate": result_periode["endDate"],
+            "isActive": 1
+        }
+
+        response = requests.post(url, json=payload)
+        requests.get('https://ratepromo.vercel.app/cek-expired-promo')
+        print('Status Code:', response.status_code)
+        print('Response:', response.json())
+        print("Success", "Promo Axis 3 has been generated!")
+
+    except Exception as e:
+        print("Error from hit_promo_axis 3: ", e)
 
 
 def XL_core():
@@ -1327,4 +1376,4 @@ def hit_promo_isat3():
 
 
 if __name__ == '__main__':
-    hit_promoAXIS2()
+    generate_promo_axis()
