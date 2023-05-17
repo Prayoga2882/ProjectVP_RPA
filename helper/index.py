@@ -1,5 +1,6 @@
 import time
-
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import schedule
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -1062,7 +1063,7 @@ def hit_promoAXIS2():
         name = driver.find_element(By.XPATH, step2).text
         time.sleep(3)
 
-        step3 = '/html/body/section[1]/div/div/div/div[2]/p[1]'
+        step3 = '/html/body/section[1]/div/div/div/div[2]/p[2]'
         periode = driver.find_element(By.XPATH, step3).text
         result_periode = periode_format_axis(periode)
 
@@ -1156,7 +1157,7 @@ def XL_core():
 
 
 def periode_format_axis(data):
-    # data = "Periode Program: 16 Maret – 15 Mei 2023"
+    # data = "Periode Program: 10 - 25 Mei 2023"
     data = data.replace("Periode Program: ", "")
 
     bulan = {'Januari': '01', 'Februari': '02', 'Maret': '03', 'April': '04', 'Mei': '05', 'Juni': '06',
@@ -1167,14 +1168,25 @@ def periode_format_axis(data):
 
     data = data.replace('-', ' ')
     data = data.replace("–", "-")
-    tanggal_awal, tanggal_akhir = data.split(" - ")
+    tanggal = data.split(" - ")
+
+    if len(tanggal) == 2:
+        tanggal_awal, tanggal_akhir = tanggal
+    elif len(tanggal) == 1:
+        tanggal_awal = tanggal_akhir = tanggal[0]
+    else:
+        print("Format tanggal tidak valid.")
+        return
 
     parsed_tanggal_awal = dateutil.parser.parse(tanggal_awal, dayfirst=True)
     parsed_tanggal_akhir = dateutil.parser.parse(tanggal_akhir, dayfirst=True)
 
+    formatted_start_date = parsed_tanggal_awal.strftime("%Y-%m-%d")
+    formatted_end_date = parsed_tanggal_akhir.strftime("%Y-%m-%d")
+
     json_result = {
-        "startDate": parsed_tanggal_awal.strftime("%Y-%m-%d"),
-        "endDate": parsed_tanggal_akhir.strftime("%Y-%m-%d")
+        "startDate": formatted_start_date,
+        "endDate": formatted_end_date
     }
 
     return json_result
