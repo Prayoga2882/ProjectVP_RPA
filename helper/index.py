@@ -1001,9 +1001,11 @@ def hit_promoAXIS1():
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
-        check = driver.find_element(By.XPATH, '//*[@id="modal-package-access"]/div/div/button/i')
-        if check:
-            check.click()
+        try:
+            driver.find_element(By.XPATH, '//*[@id="modal-package-access"]/div/div/button/i').click()
+        except:
+            pass
+
         driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.40, behavior: 'smooth'});")
         time.sleep(3)
 
@@ -1049,9 +1051,11 @@ def hit_promoAXIS2():
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
-        check = driver.find_element(By.XPATH, '//*[@id="modal-package-access"]/div/div/button/i')
-        if check:
-            check.click()
+        try:
+            driver.find_element(By.XPATH, '//*[@id="modal-package-access"]/div/div/button/i').click()
+        except:
+            pass
+
         driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.40, behavior: 'smooth'});")
         time.sleep(3)
 
@@ -1097,9 +1101,10 @@ def hit_promoAXIS3():
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
-        check = driver.find_element(By.XPATH, '//*[@id="modal-package-access"]/div/div/button/i')
-        if check:
-            check.click()
+        try:
+            driver.find_element(By.XPATH, '//*[@id="modal-package-access"]/div/div/button/i').click()
+        except:
+            pass
         driver.execute_script("window.scrollTo({top: document.body.scrollHeight * 0.40, behavior: 'smooth'});")
         time.sleep(3)
 
