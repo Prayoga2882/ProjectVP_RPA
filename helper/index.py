@@ -280,7 +280,7 @@ def generate_promo_telkomsel():
         if i.text != '':
             name.append(i.text)
 
-    hit_promoTSEL1(name)
+    # hit_promoTSEL1(name)
     hit_promoTSEL2(name)
     hit_promoTSEL3(name)
     hit_promoTSEL4(name)
@@ -304,7 +304,7 @@ def hit_promoTSEL1(name):
         time.sleep(3)
         scroll_25(driver)
 
-        promo1 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[1]/div/div/div[2]'
+        promo1 = '/html/body/div[6]/div[2]/div/div/section/div/div/div/div/a[1]/div/div/div[1]/img'
         driver.find_element(By.XPATH, promo1).click()
         time.sleep(3)
         scroll_25(driver)
@@ -348,7 +348,7 @@ def hit_promoTSEL2(name):
         time.sleep(3)
         scroll_25(driver)
 
-        promo2 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[2]/div/div/div[2]/div[2]'
+        promo2 = '/html/body/div[6]/div[2]/div/div/section/div/div/div/div/a[2]/div/div/div[1]/img'
         driver.find_element(By.XPATH, promo2).click()
         time.sleep(3)
         scroll_25(driver)
@@ -392,7 +392,7 @@ def hit_promoTSEL3(name):
         time.sleep(3)
         scroll_25(driver)
 
-        promo3 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[3]/div/div/div[2]/div[2]'
+        promo3 = '/html/body/div[6]/div[2]/div/div/section/div/div/div/div/a[3]/div/div/div[1]/img'
         driver.find_element(By.XPATH, promo3).click()
         time.sleep(3)
         scroll_25(driver)
@@ -436,7 +436,7 @@ def hit_promoTSEL4(name):
         time.sleep(3)
         scroll_25(driver)
 
-        promo4 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[4]/div/div/div[2]/div[2]'
+        promo4 = '/html/body/div[6]/div[2]/div/div/section/div/div/div/div/a[4]/div/div/div[1]/img'
         driver.find_element(By.XPATH, promo4).click()
         time.sleep(3)
         scroll_25(driver)
@@ -480,7 +480,7 @@ def hit_promoTSEL5(name):
         time.sleep(3)
         scroll_25(driver)
 
-        promo5 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[5]/div/div/div[2]/div[2]'
+        promo5 = '/html/body/div[6]/div[2]/div/div/section/div/div/div/div/a[5]/div/div/div[1]/img'
         driver.find_element(By.XPATH, promo5).click()
         time.sleep(3)
         scroll_25(driver)
@@ -524,7 +524,7 @@ def hit_promoTSEL6(name):
         time.sleep(3)
         scroll_25(driver)
 
-        promo6 = '/html/body/div[5]/div[2]/div/div/section/div/div/div/div/a[6]/div/div/div[2]/div[2]'
+        promo6 = '/html/body/div[6]/div[2]/div/div/section/div/div/div/div/a[6]/div/div/div[1]/img'
         driver.find_element(By.XPATH, promo6).click()
         time.sleep(3)
         scroll_25(driver)
