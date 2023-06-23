@@ -191,8 +191,8 @@ def get_rate_conversa():
 def get_rate_pake_pulsa():
     try:
         url = 'https://pakepulsa.com/'
-        # chrome_options = chrome_option()
-        driver = webdriver.Chrome()
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -556,8 +556,8 @@ def get_rate_zahra_convert():
 def get_rate_sukma_convert():
     try:
         url = 'https://www.sukmaconvert.com/'
-        # chrome_options = chrome_option()
-        driver = webdriver.Chrome()
+        chrome_options = chrome_option()
+        driver = webdriver.Chrome(options=chrome_options)
         driver.maximize_window()
         driver.get(url)
         time.sleep(3)
@@ -634,5 +634,5 @@ def get_rate_sukma_convert():
 
 
 if __name__ == '__main__':
-    get_rate_sukma_convert()
+    # get_rate_sukma_convert()
     get_rate_pake_pulsa()
