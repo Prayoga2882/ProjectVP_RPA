@@ -19,4 +19,10 @@ def regex_search_indosat():
 
 
 if __name__ == '__main__':
-    regex_search_indosat()
+    data = [1, 5, 2, 3, 4]
+    for i in data:
+        for j in range(len(data) - 1):
+            if data[j] > data[j + 1]:
+                data[j], data[j + 1] = data[j + 1], data[j]
+    print(data)
+
